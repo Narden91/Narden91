@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @Narden91
 - 👀 I’m interested in learning as much as I can
-- 🌱 I’m currently learning Data Science
+- 🌱 I’m currently learning Python3, Machine Learning
 - 📫 How to reach me emanuele.nardone91@gmail.com
 
 <!---
