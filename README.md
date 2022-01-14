@@ -101,13 +101,10 @@ I go to the Gym 3 times a week (maybe more indeed) and I love swimming and hikin
   <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=TensorFlow&logoColor=white" />
 </p>
 
+## Contact 📱
+<a href="emanuele.nardone91@gmail.com">
+  <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
 
-- 👋 Hi, I’m @Narden91
-- 👀 I’m interested in learning as much as I can
-- 🌱 I’m currently learning Machine Learning, Kotlin and Keras
-- 📫 How to reach me emanuele.nardone91@gmail.com
+📫 How to reach me emanuele.nardone91@gmail.com
 
-<!---
-Narden91/Narden91 is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+
