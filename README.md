@@ -1,6 +1,10 @@
 # Presentation
 
-![](jobgif.gif)
+<p align="center">
+  <img width="460" height="300" src="jobgif.gif">
+</p>
+
+
 
 - 👋 Hi, I’m @Narden91
 - 👀 I’m interested in learning as much as I can
