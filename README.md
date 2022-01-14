@@ -1,7 +1,7 @@
 # Presentation
 
 <p align="center">
-  <img width="460" height="300" src="jobgif.gif">
+  <img src="jobgif.gif">
 </p>
 
 
