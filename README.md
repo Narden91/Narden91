@@ -103,7 +103,8 @@ I go to the Gym 3 times a week (maybe more indeed) and I love swimming and hikin
 
 ## Contact 📱
 How to reach me:  
--<img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" /> -> emanuele.nardone91@gmail.com
+-Mail: emanuele.nardone91@gmail.com
+-Linkedin: linkedin.com/in/emanuelenardone-91
 
 
 
