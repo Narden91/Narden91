@@ -1,6 +1,9 @@
 # Hello visitors 👋
-I am Emanuele ✨.I am a curios **nerd** and a **photographer** with a Master Degree in Computer Science and Engineering from University of Cassino.
-I love Anime, Manga, Videogames, Tech stuff, Astrophysics and Memes (Of course)!  
+I am Emanuele. I am a curios **nerd** and a **photographer** with a Master Degree in Computer Science and Engineering from University of Cassino.
+I love Anime, Manga, Videogames, Tech stuff, Astrophysics and Memes (Of course)! 
+
+
+
 I go to the Gym 3 times a week (maybe more indeed) and I love swimming and hiking.
 
 ## Current Position⚡ 
