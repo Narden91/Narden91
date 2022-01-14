@@ -1,11 +1,10 @@
 # Hello visitors 👋
 I am Emanuele. I am a curios **nerd** and a **photographer** with a Master Degree in Computer Science and Engineering from University of Cassino.
 I love Anime, Manga, Videogames, Tech stuff, Astrophysics and Memes (Of course)!   
-<p align="center">
+<p align="left">
     <img src=FistBumpHero6.gif />
 </p>
 
-![](FistBumpHero6.gif)
 
 I go to the Gym 3 times a week (maybe more indeed) and I love swimming and hiking.
 
