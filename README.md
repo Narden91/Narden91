@@ -6,16 +6,16 @@ I am developer skilled in C++, Java, Python and Machine learning.
 - **Research Fellow** at @Unicas
 
 ## Field of interests 👀
-- **Machine Learning
-- **Deep Learning
-- **Big Data
-- **Robotic
-- **IoT
+- **Machine Learning**
+- **Deep Learning**
+- **Big Data**
+- **Robotic**
+- **IoT**
 
 ## Skills 🛠️
 
 ### Languages
-https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white
+<img src=https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white>
 
 - **Languages**:        [Python](https://www.coursera.org/account/accomplishments/certificate/NWZB93Q9CXY3)
 - **DS/ML/DL**: &nbsp;  NumPy, SciPy, Pandas, Scikit-Learn, PyTorch
@@ -24,9 +24,9 @@ https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&log
 - **DevOps**:  &ensp;   [Linux](https://stepik.org/cert/144831), [Git](https://www.coursera.org/account/accomplishments/certificate/8NLLEX6PAFUM), Docker, REST API, CI
 
 ## Current Studying 🌱
-- **MongoDB
-- **Hadoop
-- **Keras
+- **MongoDB**
+- **Hadoop**
+- **Keras**
 
 
 
