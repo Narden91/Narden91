@@ -1,3 +1,7 @@
+# Presentation
+
+![](jobgif.gif)
+
 - 👋 Hi, I’m @Narden91
 - 👀 I’m interested in learning as much as I can
 - 🌱 I’m currently learning Machine Learning, Kotlin and Keras
