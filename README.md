@@ -101,7 +101,7 @@ I go to the Gym 3 times a week (maybe more indeed) and I love swimming and hikin
 
 ## Current Studying 🌱
 <p align='left'>
-  <img src="https://img.shields.io/badge/Keras-D00000?style=for-the-badge&logo=Keras&logoColor=white" />
+  <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" />
   <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=TensorFlow&logoColor=white" />
 </p>
 
