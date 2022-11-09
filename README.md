@@ -9,7 +9,7 @@ I love Anime, Manga, Videogames, Tech stuff, Astrophysics and Memes (Of course)!
 I go to the Gym 3 times a week (maybe more indeed) and I love swimming and hiking.
 
 ## Current Position⚡ 
-- **Research Fellow** at @Unicas
+- **PhD Student** at @Unicas
 
 ## Field of interests 👀
 - **Machine Learning**
