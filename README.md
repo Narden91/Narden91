@@ -1,5 +1,6 @@
 # Hello visitors 👋
 I am Emanuele. I am a curious **nerd** and a **photographer** with a Master Degree in Computer Science and Engineering from University of Cassino.
+Right now I'm doing my PhD in Artificial Intelligence
 I love Anime, Manga, Videogames, Tech stuff, Astrophysics and Memes (Of course)!   
 <p align="left">
     <img src=FistBumpHero6.gif />
