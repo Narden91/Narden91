@@ -1,18 +1,45 @@
-# Hello visitors 👋
-I am Emanuele. I am a curious **nerd** and a **photographer** with a Master Degree in Computer Science and Engineering from University of Cassino.
-Right now I'm doing my PhD in Artificial Intelligence
-I love Anime, Manga, Videogames, Tech stuff, Astrophysics and Memes (Of course)!   
-<p align="left">
+## Hey 👋, I'm **Emanuele** 🇮🇹!  
+
+<div align="left">
+<a href="https://github.com/Narden91" target="_blank">
+<img src=https://img.shields.io/badge/github-%2324292e.svg?&style=for-the-badge&logo=github&logoColor=white alt=github style="margin-bottom: 5px;" />
+</a>
+<a href="https://twitter.com/enard91" target="_blank">
+<img src=https://img.shields.io/badge/twitter-%2300acee.svg?&style=for-the-badge&logo=twitter&logoColor=white alt=twitter style="margin-bottom: 5px;" />
+</a>
+<a href="https://linkedin.com/in/emanuelenardone-91" target="_blank">
+<img src=https://img.shields.io/badge/linkedin-%231E77B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white alt=linkedin style="margin-bottom: 5px;" />
+</a>
+<a href="https://www.facebook.com/Emanuele Nardone" target="_blank">
+<img src=https://img.shields.io/badge/facebook-%232E87FB.svg?&style=for-the-badge&logo=facebook&logoColor=white alt=facebook style="margin-bottom: 5px;" />
+</a>
+<a href="https://instagram.com/em.nard1" target="_blank">
+<img src=https://img.shields.io/badge/instagram-%23000000.svg?&style=for-the-badge&logo=instagram&logoColor=white alt=instagram style="margin-bottom: 5px;" />
+</a>  
+</div>  
+
+## Bio  
+I am a curious nerd and a photographer with a Master Degree in Software Engineering 👨‍💻.<br>
+I love Anime, Manga, Videogames, Tech stuff, Astrophysics and Memes (Of course) 
+  
+- 🔭 I’m currently doing my PhD in Artificial Intelligence. 🤖  
+  
+- 🌱 I’m currently working with Genetic Algorithms and Deep Learning applied in Biomedicaal fields.   
+  
+- ⚡ Fun fact: Always use Git. Tabs >> Spaces
+
+- 💪 Routine: Gym 3 times a week, Swim and Hiking.
+
+- 📖 Current Reading: The art of War
+ 
+<p align="center">
     <img src=FistBumpHero6.gif />
 </p>
-
-
-I go to the Gym 3 times a week (maybe more indeed) and I love swimming and hiking.
 
 ## Current Position⚡ 
 - **PhD Student** at @Unicas
 
-## Field of interests 👀
+## Areas of interest 👀
 - **Machine Learning**
 - **Deep Learning**
 - **Big Data**
@@ -95,26 +122,8 @@ I go to the Gym 3 times a week (maybe more indeed) and I love swimming and hikin
     <img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white" />
 </p>
 
-<!---
-<p align='center'>
-  
-  <a href="https://www.linkedin.com/in/alexandresanlim/">
-    <img src="https://img.shields.io/badge/LaTeX-47A141?style=for-the-badge&logo=LaTeX&logoColor=white" />
-  </a>&nbsp;&nbsp;
-  <a href="https://instagram.com/alexandresanlim">
-    <img src="https://img.shields.io/badge/instagram-%23E4405F.svg?&style=for-the-badge&logo=instagram&logoColor=white" />        
-  </a>&nbsp;&nbsp;
-  
-</p>
---->
 
 ## Current Studying 🌱
-
-
-## Contact 📱
-How to reach me: 
-- Mail: emanuele.nardone91@gmail.com
-- Linkedin: linkedin.com/in/emanuelenardone-91
 
 
 
