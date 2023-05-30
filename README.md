@@ -27,13 +27,13 @@ I love Anime, Manga, Videogames, Tech stuff, Astrophysics and Memes (Of course)
   
 - 🔭 I’m currently doing my PhD in Artificial Intelligence. 🤖  
   
-- 🌱 I’m currently working with Genetic Algorithms and Deep Learning applied in Biomedicaal fields.   
+- 🌱 I’m currently working with Genetic Algorithms and Artificial Intelligence applied in Biomedical field.   
   
 - ⚡ Fun fact: Always use Git. Tabs >> Spaces
 
 - 💪 Routine: Gym 3 times a week, Swim and Hiking.
 
-- 📖 Current Reading: The art of War
+- 📖 Current Reading: A brief Welcome to the Universe
  
 <p align="center">
     <img src=FistBumpHero6.gif />
