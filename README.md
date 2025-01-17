@@ -14,7 +14,7 @@
 
 ## 🎯 Research Vision
 
-> Pioneering the intersection of AI and biomedical analysis through innovative approaches in handwriting temporal series and medical image processing. Committed to developing solutions that bridge the gap between theoretical AI and practical healthcare applications.
+> PhD researcher in AI field, focusing on early detection of neurological conditions (Alzheimer's, Parkinson's) and Specific Learning Disabilities (SLD) through handwriting analysis. Developing novel applications of genetic algorithms and optimization techniques for healthcare diagnostics. Committed to creating practical AI solutions that make neurological assessment more accessible and accurate.
 
 ## 🔬 Current Research Focus
 
