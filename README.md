@@ -28,17 +28,14 @@
 - 🔄 Genetic Algorithms in Healthcare
 - 🤖 Deep Learning for Biomedical Applications
 - 📈 Bayesian Methods in Medical Diagnostics
-
 </td>
 <td width="50%">
-
 ### Active Projects
-- 🔍 Developing novel handwriting analysis algorithms
-- 🏥 Medical image segmentation using deep learning
-- 📱 Healthcare monitoring systems
-- 📊 Biomedical data visualization tools
-- 🧪 Clinical decision support systems
-
+- 🔍 Spatial Handwriting Features Extraction
+- ⚙️ Kubernetes Cluster Creation & Deployment
+- 📱 Handwriting Acquisition System Development
+- 🔮 Ensemble Techniques Experimentation
+- 🧬 Genetic Programming for Evolutionary Deep Learning
 </td>
 </tr>
 </table>
@@ -94,8 +91,8 @@
 
 - 📚 PhD Student in Artificial Intelligence
 - 🎓 Master's Degree in Software Engineering
-- 📖 Currently Reading: "A Brief Welcome to the Universe"
-- 🌱 Learning: Advanced PyTorch, SHAP Interpretability
+- 📖 Currently Reading: "Atomic Habits"
+- 🌱 Learning: Conformal Prediction, Causality-based algorithms, DevOps
 - 💪 Active Lifestyle: Gym (3x/week), Swimming, Hiking
 
 ## 🤝 Let's Connect!
