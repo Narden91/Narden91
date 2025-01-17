@@ -18,10 +18,10 @@
 
 ## 🔬 Current Research Focus
 
-<table>
+<table width="100%" align="center">
 <tr>
-<td width="50%">
-
+<td width="50%" style="padding-right: 20px; text-align: center;">
+  
 ### Core Areas
 - 📊 Time Series Analysis of Handwriting Data
 - 🧬 Medical Image Processing & Analysis
@@ -29,13 +29,14 @@
 - 🤖 Deep Learning for Biomedical Applications
 - 📈 Bayesian Methods in Medical Diagnostics
 </td>
-<td width="50%">
+<td width="50%" style="padding-left: 20px; text-align: center;">
+  
 ### Active Projects
 - 🔍 Spatial Handwriting Features Extraction
 - ⚙️ Kubernetes Cluster Creation & Deployment
 - 📱 Handwriting Acquisition System Development
 - 🔮 Ensemble Techniques Experimentation
-- 🧬 Genetic Programming for Evolutionary Deep Learning
+- 🧬 Genetic Programming for Evolutionary DL
 </td>
 </tr>
 </table>
