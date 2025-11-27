@@ -1,4 +1,4 @@
-# Emanuele Nardone | AI Researcher & PhD Student 🧠
+# Emanuele Nardone | AI Researcher & PhD 🧠
 
 <div align="center">
   
@@ -14,7 +14,7 @@
 
 ## 🎯 Research Vision
 
-> PhD researcher in AI field, focusing on early detection of neurological conditions (Alzheimer's, Parkinson's) and Specific Learning Disabilities (SLD) through handwriting analysis. Developing novel applications of genetic algorithms and optimization techniques for healthcare diagnostics. Committed to creating practical AI solutions that make neurological assessment more accessible and accurate.
+> PhD researcher in the AI field, focusing on early detection of neurological conditions (Alzheimer's, Parkinson's) and Specific Learning Disabilities (SLD) through handwriting analysis. Developing novel applications of genetic algorithms and optimisation techniques for healthcare diagnostics. Committed to creating practical AI solutions that make neurological assessment more accessible and accurate.
 
 ## 🔬 Current Research Focus
 
