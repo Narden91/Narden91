@@ -34,6 +34,7 @@
 
 ### 🎓 Core Research Areas
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#4285F4','primaryTextColor':'#fff','primaryBorderColor':'#7cb3ff','lineColor':'#4285F4','secondaryColor':'#34A853','tertiaryColor':'#FBBC04'}}}%%
 mindmap
   root((AI Research))
     Time Series Analysis
@@ -133,23 +134,9 @@ mindmap
 
 <div align="center">
   
-<img width="49%" height="195px" src="https://github-readme-stats.vercel.app/api?username=Narden91&show_icons=true&count_private=true&hide_border=true&title_color=4285F4&icon_color=4285F4&text_color=c9d1d9&bg_color=0d1117" alt="Emanuele Nardone github stats" /> 
+![Emanuele's GitHub Stats](https://github-readme-stats.vercel.app/api?username=Narden91&show_icons=true&theme=tokyonight&hide_border=true&count_private=true)
 
-<img width="49%" height="195px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Narden91&layout=compact&hide_border=true&title_color=4285F4&text_color=c9d1d9&bg_color=0d1117&langs_count=8" />
-
-</div>
-
-<div align="center">
-  
-<img width="49%" src="https://github-readme-streak-stats.herokuapp.com/?user=Narden91&theme=tokyonight&hide_border=true&stroke=0000&background=0D1117&ring=4285F4&fire=4285F4&currStreakLabel=4285F4" />
-
-<img width="49%" src="https://github-readme-stats.vercel.app/api/wakatime?username=@Narden91&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=4285F4&text_color=c9d1d9&custom_title=Coding%20Activity" />
-
-</div>
-
-<div align="center">
-  
-[![Emanuele's github activity graph](https://github-readme-activity-graph.vercel.app/graph?username=Narden91&theme=tokyo-night&hide_border=true&bg_color=0d1117&color=4285F4&line=4285F4&point=ffffff)](https://github.com/Narden91)
+![GitHub Streak](https://streak-stats.demolab.com?user=Narden91&theme=tokyonight&hide_border=true)
 
 </div>
 
