@@ -1,8 +1,8 @@
 # Emanuele Nardone | AI Researcher & PhD 🧠
 
 <div align="center">
-  
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=24&duration=3000&pause=1000&color=4285F4&random=false&width=435&lines=AI+Researcher+%F0%9F%94%AC;PhD+Student+%F0%9F%8E%93;Software+Engineer+%F0%9F%92%BB;Deep+Learning+Enthusiast+%F0%9F%A4%96)](https://git.io/typing-svg)
+
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=24&duration=3000&pause=1000&color=7AA2F7&center=true&vCenter=true&random=false&width=435&lines=AI+Researcher+%F0%9F%94%AC;PhD+Student+%F0%9F%8E%93;Deep+Learning+Enthusiast+%F0%9F%A4%96;Healthcare+Innovation+%F0%9F%A9%BA)](https://git.io/typing-svg)
 
 ---
 
@@ -14,97 +14,96 @@
 
 ## 🎯 Research Vision
 
-> PhD researcher in the AI field, focusing on early detection of neurological conditions (Alzheimer's, Parkinson's) and Specific Learning Disabilities (SLD) through handwriting analysis. Developing novel applications of genetic algorithms and optimisation techniques for healthcare diagnostics. Committed to creating practical AI solutions that make neurological assessment more accessible and accurate.
+> **PhD researcher in the AI field**, dedicated to the early detection of neurological conditions (Alzheimer's, Parkinson's) and Specific Learning Disabilities (SLD). My work bridges the gap between **Time Series Analysis** and **Clinical Diagnostics**, utilizing Genetic Algorithms to optimize deep learning architectures for healthcare.
+
+## 🧠 Core AI & Tech Stack
+
+<div align="center">
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
+![PyTorch Lightning](https://img.shields.io/badge/PyTorch%20Lightning-792EE5?style=for-the-badge&logo=pytorchlightning&logoColor=white)
+![SciPy](https://img.shields.io/badge/SciPy-8CAAE6?style=for-the-badge&logo=SciPy&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/Numpy-013243?style=for-the-badge&logo=numpy&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit_learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+
+</div>
+
+<br>
+
+<details>
+<summary><b>🛠️ Languages, Tools & Infrastructure (Click to Expand)</b></summary>
+<br>
+<div align="center">
+
+![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
+![Git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![Neo4j](https://img.shields.io/badge/Neo4j-018bff?style=for-the-badge&logo=neo4j&logoColor=white)
+
+</div>
+</details>
 
 ## 🔬 Current Research Focus
 
 <table width="100%" align="center">
 <tr>
-<td width="50%" style="padding-right: 20px; text-align: center;">
-  
-### Core Areas
-- 📊 Time Series Analysis of Handwriting Data
-- 🧬 Medical Image Processing & Analysis
-- 🔄 Genetic Algorithms in Healthcare
-- 🤖 Deep Learning for Biomedical Applications
-- 📈 Bayesian Methods in Medical Diagnostics
+<td width="50%" valign="top">
+
+### 📊 Methodologies
+- **Time Series Analysis**: Extracting temporal dependencies from handwriting kinematics.
+- **Genetic Algorithms**: Evolutionary optimization for Neural Architecture Search (NAS).
+- **Bayesian Methods**: Uncertainty quantification in medical diagnostics.
+- **Explainable AI (XAI)**: Making "black box" models interpretable for clinicians.
+
 </td>
-<td width="50%" style="padding-left: 20px; text-align: center;">
-  
-### Active Projects
-- 🔍 Spatial Handwriting Features Extraction
-- ⚙️ Kubernetes Cluster Creation & Deployment
-- 📱 Handwriting Acquisition System Development
-- 🔮 Ensemble Techniques Experimentation
-- 🧬 Genetic Programming for Evolutionary DL
+<td width="50%" valign="top">
+
+### 🚀 Active Projects
+- **NeuroScript**: Spatial feature extraction engine for handwriting data.
+- **KubeGen**: Genetic programming deployment on Kubernetes clusters.
+- **Evo-DL**: Evolutionary strategies for hyperparameter tuning in biomedical imaging.
+- **Acquisition**: Developing tablet-based interfaces for patient data collection.
+
 </td>
 </tr>
 </table>
 
-## 💻 Technology Arsenal
-
-<details>
-<summary><b>🔵 Core Languages & Frameworks</b></summary>
-<br>
-
-![Python](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=darkgreen)
-![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
-![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
-![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)
-![Kotlin](https://img.shields.io/badge/Kotlin-0095D5?&style=for-the-badge&logo=kotlin&logoColor=white)
-
-</details>
-
-<details>
-<summary><b>🧠 AI/ML Stack</b></summary>
-<br>
-
-![scikit-learn](https://img.shields.io/badge/scikit_learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
-![Pandas](https://img.shields.io/badge/Pandas-2C2D72?style=for-the-badge&logo=pandas&logoColor=white)
-![NumPy](https://img.shields.io/badge/Numpy-777BB4?style=for-the-badge&logo=numpy&logoColor=white)
-![SciPy](https://img.shields.io/badge/SciPy-654FF0?style=for-the-badge&logo=SciPy&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
-![PyTorch Lightning](https://img.shields.io/badge/PyTorch%20Lightning-792EE5?style=for-the-badge&logo=pytorchlightning&logoColor=white)
-
-</details>
-
-<details>
-<summary><b>🛠️ Development Tools & Databases</b></summary>
-<br>
-
-![Git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
-![VSCode](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
-![PyCharm](https://img.shields.io/badge/PyCharm-000000.svg?&style=for-the-badge&logo=PyCharm&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
-![Neo4j](https://img.shields.io/badge/Neo4j-018bff?style=for-the-badge&logo=neo4j&logoColor=white)
-
-</details>
-
-## 📈 Analytics
+## 📈 GitHub Analytics
 
 <div align="center">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=Narden91&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true"/>
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Narden91&layout=compact&langs_count=7&theme=tokyonight"/>
+
+<p float="left">
+  <img src="https://github-readme-stats.vercel.app/api?username=Narden91&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true" height="170" alt="Stats" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Narden91&theme=tokyonight&hide_border=true" height="170" alt="Streak" />
+</p>
+
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Narden91&layout=compact&langs_count=8&theme=tokyonight&hide_border=true" alt="Languages" />
+
 </div>
 
 ## 🎓 Education & Learning
 
-- 📚 PhD Student in Artificial Intelligence
-- 🎓 Master's Degree in Software Engineering
-- 📖 Currently Reading: "Atomic Habits"
-- 🌱 Learning: Conformal Prediction, Causality-based algorithms, DevOps
-- 💪 Active Lifestyle: Gym (3x/week), Swimming, Hiking
+| Type | Details |
+| :--- | :--- |
+| **🎓 PhD** | **Artificial Intelligence** (Current Focus: Neurological Patterns) |
+| **🎓 MSc** | **Software Engineering** |
+| **📚 Reading** | *"Atomic Habits"* by James Clear |
+| **🌱 Learning** | Conformal Prediction, Causal Inference, MLOps |
+| **🏃‍♂️ Hobbies** | Gym (3x/week), Swimming, Hiking |
 
 ## 🤝 Let's Connect!
 
 <div align="center">
 
-[![GitHub](https://img.shields.io/badge/github-%2324292e.svg?&style=for-the-badge&logo=github&logoColor=white)](https://github.com/Narden91)
-[![LinkedIn](https://img.shields.io/badge/linkedin-%231E77B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/emanuelenardone-91)
-[![Twitter](https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white)](https://twitter.com/enard91)
-[![Instagram](https://img.shields.io/badge/instagram-%23000000.svg?&style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/em.nard1)
-
-<img src="https://komarev.com/ghpvc/?username=Narden91&color=blue&style=flat-square" alt="Profile Views Counter"/>
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/emanuelenardone-91)
+[![Twitter](https://img.shields.io/badge/X-%23000000.svg?&style=for-the-badge&logo=X&logoColor=white)](https://twitter.com/enard91)
+[![Scholar](https://img.shields.io/badge/Google_Scholar-4285F4?style=for-the-badge&logo=google-scholar&logoColor=white)](https://scholar.google.com) 
+<br>
+<img src="https://komarev.com/ghpvc/?username=Narden91&color=blue&style=flat-square&label=Profile+Views" alt="Profile Views Counter"/>
 
 </div>
