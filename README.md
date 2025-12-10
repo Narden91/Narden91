@@ -117,22 +117,6 @@
 
 <br>
 
-## ⚡️ GitHub Statistics
-
-<br>
-
-<div align="center">
-  <img width="390" src="https://github-contributor-stats.vercel.app/api?username=Narden91&hide=B,B%2B&hide_contributor_rank=false&limit=5" alt="Narden91's GitHub Stats" />
-  <img width="390" src="https://github-readme-streak-stats.herokuapp.com/?user=Narden91&theme=tokyonight&count_private=true&border_radius=10&locale=en&hide_border=true" alt="Narden91's GitHub Streak" />
-  <br/>
-  <!-- <img width="390" src="https://github-readme-stats.vercel.app/api/top-langs?username=Narden91&theme=tokyonight&layout=donut&hide=css&langs_count=8&border_radius=10&show_icons=true&locale=en&hide_border=true" alt="Narden91's Most Used Languages" />
-  <img width="390" src="https://github-profile-trophy.vercel.app/?username=Narden91&theme=tokyonight&no-frame=true&no-bg=false&row=2&column=4" alt="Narden91's GitHub Trophies" /> -->
-</div>
-
-<hr>
-
-<br>
-
 ## 🎓 Education & Continuous Learning
 
 | 🎯 Category | 📚 Details |
