@@ -121,8 +121,9 @@
 
 | 🎯 Category | 📚 Details |
 |------------|-----------|
-| **Current** | 🎓 PhD in Artificial Intelligence |
-| **Degree** | 🎓 Master's in Software Engineering |
+| **Current** | Researcher |
+| **PhD** | 🎓 Artificial Intelligence |
+| **MsC Degree** | 🎓 Software Engineering |
 | **Reading** | 📖 "Atomic Habits" by James Clear |
 | **Learning** | 🌱 Conformal Prediction • Causality-based Algorithms • DevOps |
 | **Lifestyle** | 💪 Gym (3x/week) • 🏊 Swimming • 🥾 Hiking |
