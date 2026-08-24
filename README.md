@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=190&section=header&text=Emanuele%20Nardone&fontSize=43&fontColor=ffffff&animation=twinkling&fontAlignY=34&desc=Postdoctoral%20Researcher%20%C2%B7%20Artificial%20Intelligence%20%26%20Machine%20Learning&descSize=17&descAlignY=56" width="100%" alt="Emanuele Nardone — Postdoctoral Researcher in Artificial Intelligence and Machine Learning" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=Emanuele%20Nardone&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=32&desc=Postdoctoral%20AI%20Researcher%20at%20UEF&descSize=16&descAlignY=52" width="100%" alt="Emanuele Nardone — Postdoctoral AI Researcher at UEF" />
 
 <a href="https://github.com/Narden91">
   <img
@@ -22,7 +22,7 @@
 
 <br />
 
-![Peer Reviewed](https://img.shields.io/badge/Peer--Reviewed_Publications-10-2EA043?style=flat-square)
+![Peer Reviewed](https://img.shields.io/badge/Peer--Reviewed_Publications-15-2EA043?style=flat-square)
 ![First Author](https://img.shields.io/badge/First--Author-7-2F81F7?style=flat-square)
 ![Best Paper](https://img.shields.io/badge/EvoStar_2026-Best_EvoApps_Paper-FFB000?style=flat-square)
 ![Horizon Europe](https://img.shields.io/badge/Horizon_Europe-2_Projects-003399?style=flat-square&logo=europeanunion&logoColor=FFD700)
@@ -154,7 +154,7 @@ Machine-learning and optimisation experiments on CINECA systems, numerical studi
 
 <table>
 <tr>
-<td width="25%" align="center"><b>10</b><br />Peer-reviewed<br />publications</td>
+<td width="25%" align="center"><b>15</b><br />Peer-reviewed<br />publications</td>
 <td width="25%" align="center"><b>7</b><br />First-author<br />papers</td>
 <td width="25%" align="center"><b>1</b><br />Best paper<br />award</td>
 <td width="25%" align="center"><b>2</b><br />Horizon Europe<br />projects</td>
