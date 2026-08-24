@@ -1,20 +1,35 @@
-<table>
-<tr>
-<td width="150">
-<img src="https://avatars.githubusercontent.com/u/58366057?v=4" width="130" alt="Emanuele Nardone">
-</td>
-<td>
+<center>
+
+<a href="https://github.com/Narden91">
+  <img src="https://avatars.githubusercontent.com/u/58366057?v=4" width="145" alt="Emanuele Nardone">
+</a>
 
 # Emanuele Nardone
 
-**Postdoctoral Researcher in Artificial Intelligence and Machine Learning**  
-University of Eastern Finland · Center for Photonics Sciences
+### Postdoctoral Researcher · Artificial Intelligence & Machine Learning
 
-**Research:** computational photonics · THz and Raman spectroscopy · inverse problems · uncertainty quantification · evolutionary computation · biomedical AI
+**University of Eastern Finland · Center for Photonics Sciences**
 
-</td>
-</tr>
-</table>
+<a href="https://github.com/Narden91">
+  <img
+    src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=20&duration=2800&pause=900&color=58A6FF&center=true&vCenter=true&repeat=true&random=false&width=850&height=45&lines=AI%2FML+for+THz%2C+Raman+%26+Optical+Spectroscopy;Inverse+Problems+%C2%B7+Uncertainty+Quantification;Evolutionary+Computation+%C2%B7+Biomedical+AI;10+Peer-Reviewed+Publications+%C2%B7+7+First-Author"
+    alt="Research areas"
+  >
+</a>
+
+<br>
+
+<kbd>📡 THz & Raman spectroscopy</kbd>
+<kbd>🌈 Computational photonics</kbd>
+<kbd>🎯 Uncertainty quantification</kbd>
+<kbd>🧬 Evolutionary computation</kbd>
+<kbd>🧠 Biomedical AI</kbd>
+
+<br><br>
+
+</center>
+
+<center>
 
 [![UEF](https://img.shields.io/badge/UEF-Research_Profile-005F86?style=for-the-badge)](https://uefconnect.uef.fi/en/emanuele.nardone/)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0005--8718--5435-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0009-0005-8718-5435)
@@ -28,6 +43,8 @@ University of Eastern Finland · Center for Photonics Sciences
 ![First Author](https://img.shields.io/badge/First--Author_Peer--Reviewed-7-2F81F7?style=flat-square)
 ![Best Paper](https://img.shields.io/badge/EvoStar_2026-Best_EvoApps_Paper-FFB000?style=flat-square)
 ![Horizon Europe](https://img.shields.io/badge/Horizon_Europe-HERMES_+_THz--Skin-003399?style=flat-square&logo=europeanunion&logoColor=FFD700)
+
+</center>
 
 ---
 
