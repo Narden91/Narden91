@@ -1,14 +1,6 @@
 <div align="center">
 
-<a href="https://github.com/Narden91">
-  <img src="https://avatars.githubusercontent.com/u/58366057?v=4" width="138" alt="Emanuele Nardone profile picture" />
-</a>
-
-# Emanuele Nardone
-
-### Postdoctoral Researcher · Artificial Intelligence & Machine Learning
-
-**University of Eastern Finland · Center for Photonics Sciences**
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=190&section=header&text=Emanuele%20Nardone&fontSize=43&fontColor=ffffff&animation=twinkling&fontAlignY=34&desc=Postdoctoral%20Researcher%20%C2%B7%20Artificial%20Intelligence%20%26%20Machine%20Learning&descSize=17&descAlignY=56" width="100%" alt="Emanuele Nardone — Postdoctoral Researcher in Artificial Intelligence and Machine Learning" />
 
 <a href="https://github.com/Narden91">
   <img
@@ -16,6 +8,8 @@
     alt="Research focus"
   />
 </a>
+
+**University of Eastern Finland · Center for Photonics Sciences**
 
 <br />
 
@@ -36,6 +30,8 @@
 
 </div>
 
+<br />
+
 ---
 
 ## About
@@ -47,6 +43,8 @@ My current research includes **THz and Raman data analysis, transfer-matrix-mode
 During my PhD, I investigated **handwriting-based biomarkers for neurological screening**, combining deep learning, Bayesian classifier fusion, evolutionary computation, multimodal learning, and explainable AI.
 
 > **Research goal:** build machine-learning systems that are not only accurate, but measurable, reproducible, and useful in scientific practice.
+
+<br />
 
 ---
 
@@ -103,6 +101,8 @@ During my PhD, I investigated **handwriting-based biomarkers for neurological sc
 </tr>
 </table>
 
+<br />
+
 ---
 
 ## Current projects
@@ -146,6 +146,8 @@ Machine-learning and optimisation experiments on CINECA systems, numerical studi
 </tr>
 </table>
 
+<br />
+
 ---
 
 ## Selected research output
@@ -174,6 +176,8 @@ Machine-learning and optimisation experiments on CINECA systems, numerical studi
   <a href="https://orcid.org/0009-0005-8718-5435"><img src="https://img.shields.io/badge/Full_publication_record-ORCID-A6CE39?style=for-the-badge&logo=orcid&logoColor=white" alt="ORCID publication record" /></a>
   <a href="https://www.researchgate.net/profile/Emanuele-Nardone"><img src="https://img.shields.io/badge/Research_outputs-ResearchGate-00CCBB?style=for-the-badge&logo=researchgate&logoColor=white" alt="ResearchGate research outputs" /></a>
 </p>
+
+<br />
 
 ---
 
@@ -215,6 +219,8 @@ Deep-learning models for handwriting classification, including recurrent, Transf
   <a href="https://github.com/Narden91?tab=repositories"><img src="https://img.shields.io/badge/Explore_all_repositories-181717?style=for-the-badge&logo=github&logoColor=white" alt="Explore all repositories" /></a>
 </p>
 
+<br />
+
 ---
 
 ## Technical toolbox
@@ -252,6 +258,8 @@ Deep-learning models for handwriting classification, including recurrent, Transf
 **Systems:** CINECA HPC · GPU computing · containers · Linux · reproducible machine-learning workflows
 
 </details>
+
+<br />
 
 ---
 
@@ -293,6 +301,8 @@ timeline
 
 </details>
 
+<br />
+
 ---
 
 ## GitHub activity
@@ -301,6 +311,8 @@ timeline
 <p align="center">
   <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Narden91&theme=github_dark" width="96%" alt="Narden91 GitHub contribution activity" />
 </p>
+
+<br />
 
 ---
 
@@ -314,6 +326,8 @@ timeline
 ![Software Engineer](https://img.shields.io/badge/Professional_Qualification-Software_Engineer-2E8B57?style=for-the-badge)
 
 </p>
+
+<br />
 
 ---
 
