@@ -1,229 +1,243 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=Emanuele%20Nardone&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=32&desc=Postdoctoral%20AI%20Researcher%20%7C%20PhD%20in%20Artificial%20Intelligence%20%7C%20Software%20Engineer&descSize=16&descAlignY=52" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=190&section=header&text=Emanuele%20Nardone&fontSize=44&fontColor=ffffff&animation=twinkling&fontAlignY=31&desc=Postdoctoral%20Researcher%20%7C%20AI%2FML%20for%20Photonics%2C%20Spectroscopy%20%26%20Inverse%20Problems&descSize=16&descAlignY=52" width="100%" alt="Emanuele Nardone header"/>
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=600&size=22&duration=3000&pause=1000&color=58A6FF&center=true&vCenter=true&random=false&width=750&lines=Postdoctoral+AI+Researcher+%40+University+of+Eastern+Finland;EU+HERMES+Project+%E2%80%94+Spectroscopy+%26+Computer+Vision;Raman+%26+THz+Spectroscopy+Data+Analysis;TEM+Image+Analysis+%7C+Healthcare+AI+%7C+Explainable+AI;11+Peer-Reviewed+Publications+%7C+4+First-Author)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=600&size=20&duration=3200&pause=900&color=58A6FF&center=true&vCenter=true&random=false&width=820&lines=Postdoctoral+Researcher+%40+University+of+Eastern+Finland;HERMES+%2B+THz-Skin+%7C+Horizon+Europe+Research;Optical+%26+THz+Data+%7C+Raman+Analysis+%7C+Inverse+Problems;Uncertainty+Quantification+%7C+Evolutionary+Computation+%7C+XAI;10+Peer-Reviewed+Publications+%7C+7+First-Author;Best+EvoApps+Paper+Award+%E2%80%94+EvoStar+2026)](https://git.io/typing-svg)
 
 <br>
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://narden91.github.io/curriculumwebsite/)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/emanuelenardone-91)
-[![Google Scholar](https://img.shields.io/badge/Google_Scholar-4285F4?style=for-the-badge&logo=googlescholar&logoColor=white)](https://scholar.google.com/)
-[![Twitter/X](https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white)](https://twitter.com/enard91)
-[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:emanuele.nardone91@gmail.com)
+[![UEF Profile](https://img.shields.io/badge/UEF-Research_Profile-005F86?style=for-the-badge)](https://uefconnect.uef.fi/en/emanuele.nardone/)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0005--8718--5435-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0009-0005-8718-5435)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Emanuele_Nardone-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/emanuelenardone/)
+[![ResearchGate](https://img.shields.io/badge/ResearchGate-Profile-00CCBB?style=for-the-badge&logo=researchgate&logoColor=white)](https://www.researchgate.net/profile/Emanuele-Nardone)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Website-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://narden91.github.io/curriculumwebsite/)
+[![Email](https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:emanuele.nardone91@gmail.com)
 
 <br>
 
 ![Profile Views](https://komarev.com/ghpvc/?username=Narden91&color=58A6FF&style=flat-square&label=Profile+Views)
-![Publications](https://img.shields.io/badge/Publications-11-success?style=flat-square)
-![First Author](https://img.shields.io/badge/First_Author-4-blue?style=flat-square)
-![Azure](https://img.shields.io/badge/Microsoft_Azure_AI-Certified-0078D4?style=flat-square&logo=microsoftazure)
-![EU Project](https://img.shields.io/badge/EU_HERMES-Project-FFD700?style=flat-square&logo=europeanunion&logoColor=003399)
+![Peer Reviewed](https://img.shields.io/badge/Peer--Reviewed_Publications-10-success?style=flat-square)
+![First Author](https://img.shields.io/badge/First--Author_Peer--Reviewed-7-2F81F7?style=flat-square)
+![Best Paper](https://img.shields.io/badge/EvoStar_2026-Best_EvoApps_Paper-FFB000?style=flat-square)
+![Horizon Europe](https://img.shields.io/badge/Horizon_Europe-HERMES-003399?style=flat-square&logo=europeanunion&logoColor=FFD700)
 
 </div>
 
-## 🧬 About Me
+<!--
+Publication-counting convention, verified against the 2026 MSCA CV:
+- Peer-reviewed: 5 journal items (including 1 accepted article) + 5 conference proceedings = 10.
+- First-author peer-reviewed: 3 journal items + 4 conference proceedings = 7.
+- 1 submitted manuscript and 3 preprints/open outputs are intentionally excluded from the headline count.
+-->
 
-```python
-class EmanueleNardone:
-    role         = "Postdoctoral AI Researcher"
-    affiliation  = "University of Eastern Finland 🇫🇮"
-    project      = "EU HERMES Project 🇪🇺"
-    phd          = "PhD in Artificial Intelligence (2025)"
-    alma_mater   = "University of Cassino and Southern Lazio 🇮🇹"
-    
-    current_focus = [
-        "Raman & THz Spectroscopy AI",
-        "Time Series Spectral Analysis",
-        "TEM Image Computer Vision",
-        "Healthcare AI & Explainability",
-    ]
-    
-    background = [
-        "Handwriting Biomarkers for Neurological Diagnosis",
-        "Evolutionary Computation & Genetic Programming",
-        "Bayesian Networks & Ensemble Methods",
-        "Agentic AI & LLM Systems",
-    ]
-    
-    motto = "Bridging AI research and real-world impact"
-```
+## About
 
-> **Postdoctoral Researcher** at the **University of Eastern Finland**, working on the **EU HERMES Project**. I develop AI algorithms for **Raman and THz spectroscopy** data analysis, **time series spectral analysis**, and **TEM image computer vision**. Previously, my PhD research focused on AI-driven early detection of neurodegenerative diseases (Alzheimer's, Parkinson's) and Specific Learning Disabilities through handwriting analysis, combining deep learning, evolutionary computation, and Bayesian methods with **explainability tools** for clinical decision support. Author of **11 peer-reviewed publications** including 4 as first author.
+I am a **Postdoctoral Researcher at the University of Eastern Finland (UEF), Center for Photonics Sciences**, working at the intersection of **artificial intelligence, computational photonics, spectroscopy, and scientific software**.
 
-<br>
+My current research applies machine learning and deep learning to **optical and THz data**, including **transfer-matrix-model optimisation**, **inverse-problem reconstruction**, **Raman analysis**, **spectral modelling**, and **uncertainty quantification**. In 2026, I also work on industrial THz biosensing through a UEF-funded secondment at **Monozukuri S.p.A.**
 
-## 🔬 Research Focus
+My doctoral research focused on **AI-based biomarkers for neurodegenerative-disease screening from handwriting**, combining machine learning, evolutionary computation, Bayesian classifier fusion, deep learning, and explainable AI.
+
+> I am particularly interested in research where reliable AI has to interact with noisy measurements, physical constraints, limited data, and real deployment requirements.
+
+## Current research
 
 <table>
 <tr>
 <td width="50%" valign="top">
 
-### 🎯 Core Domains
+### Scientific focus
 
-| Area | Details |
-|------|---------|
-| 🔭 **Spectroscopy AI** | Raman & THz spectroscopy data analysis with ML/DL |
-| 📈 **Spectral Analysis** | Time series methods for spectral data processing |
-| 🔬 **Computer Vision** | TEM image analysis & feature extraction |
-| 🧠 **Healthcare AI** | Neurological disease early detection via handwriting |
-| 🔍 **Explainable AI** | SHAP, attention visualisation for clinical trust |
-| 🧬 **Evolutionary Computation** | Genetic algorithms & GP for feature selection |
-| 🤖 **Agentic AI & LLMs** | LangChain, LangGraph, smolagents |
+- **Computational photonics**
+- **THz & optical spectroscopy**
+- **Inverse problems & reconstruction**
+- **Raman spectral analysis**
+- **Uncertainty quantification**
+- **Conformal prediction**
+- **Evolutionary optimisation**
+- **Computer vision / TEM analysis**
 
 </td>
 <td width="50%" valign="top">
 
-### 🚀 Current Projects
+### Transferable AI expertise
 
-- 🇪🇺 **EU HERMES Project** — AI for advanced spectroscopy
-- 🔭 **Raman & THz Spectroscopy** — ML-driven data analysis pipelines
-- 📊 **Time Series Spectral Analysis** — Signal processing & classification
-- 🖼️ **TEM Image Analysis** — Computer vision for material characterisation
-- 🌱 **Learning:** Conformal Prediction • Causal Inference • DevOps
+- **Healthcare & biomedical AI**
+- **Handwriting biomarkers**
+- **Explainable AI**
+- **Bayesian networks & multimodal fusion**
+- **Genetic algorithms / genetic programming**
+- **Reproducible ML pipelines**
+- **Agentic AI / LLM systems**
+- **Scientific HPC workflows**
 
 </td>
 </tr>
 </table>
 
-<br>
+## Research projects
 
-## 🎓 Journey
+| Project | Programme | Contribution |
+|---|---|---|
+| **HERMES** | Horizon Europe MSCA Staff Exchanges | ML/DL for THz and optical data, spectral analysis, optimisation and inverse reconstruction |
+| **THz-Skin** | Horizon Europe EIC Pathfinder Open | AI/ML contribution, data management and THz fingerprint e-library development |
+| **Monozukuri industrial secondment** | UEF / HERMES | THz-based non-invasive glucose-sensing feasibility and AI/ML signal-processing workflows |
+| **MEATIC / CINECA HPC** | EUROfusion / CINECA | ML, optimisation and numerical research workloads on national HPC infrastructure |
+| **CLEPSYDRA** | Interreg Euro-MED | Reproducible end-to-end data-ingestion and machine-learning software platform |
+
+## Research track record
+
+<div align="center">
+
+| 10 | 7 | 2026 | 2026 |
+|:---:|:---:|:---:|:---:|
+| **Peer-reviewed publications** | **First-author peer-reviewed** | **Best EvoApps Paper Award** | **BIOMAP @ ICPR Workshop Chair** |
+
+</div>
+
+The publication count above is deliberately conservative: it includes **5 journal items and 5 peer-reviewed conference proceedings**. A submitted manuscript and preprints/open outputs are tracked separately rather than mixed into the peer-reviewed total.
+
+### Selected publications
+
+- **Nardone E.**, D'Alessandro T., Cilia N.D., Fontanella F. (2025). *Handwriting strokes as biomarkers for Alzheimer's disease prediction*. **Computers in Biology and Medicine**, 190:110039. [DOI](https://doi.org/10.1016/j.compbiomed.2025.110039)
+- **Nardone E.**, D'Alessandro T., De Stefano C., Fontanella F., Scotto di Freca A. (2025). *A Bayesian network combiner for multimodal handwriting analysis in Alzheimer's detection*. **Pattern Recognition Letters**, 190:177-184. [DOI](https://doi.org/10.1016/j.patrec.2025.02.019)
+- **Nardone E.**, D'Alessandro T., De Stefano C., Fontanella F. (2025). *How Data Augmentation Affects Evolutionary Algorithms in Feature Selection*. **SN Computer Science**, 6(5):536.
+- **Nardone E. et al.** (2026). *Toward Reliable Uncertainty Quantification in Surrogate-Assisted Evolutionary Algorithms via Temporal Conformal Prediction*. **EvoApplications 2026, LNCS**, 384-401 — **Best EvoApps Paper Award**.
+
+[![ORCID](https://img.shields.io/badge/Complete_record-ORCID-A6CE39?style=flat-square&logo=orcid&logoColor=white)](https://orcid.org/0009-0005-8718-5435)
+[![ResearchGate](https://img.shields.io/badge/Research_outputs-ResearchGate-00CCBB?style=flat-square&logo=researchgate&logoColor=white)](https://www.researchgate.net/profile/Emanuele-Nardone)
+
+## Academic & professional path
 
 ```mermaid
 timeline
-    title Academic & Professional Path
-    2018-2021 : MSc Software Engineering
-             : 110/110 summa cum laude
-             : Erasmus+ at Univ. Porto 🇵🇹
-    2021-2022 : Research Fellowships ×2
-             : Handwriting ML & Data Acquisition
-             : University of Cassino
-    2022-2025 : PhD in Artificial Intelligence
-             : Univ. Cassino & Southern Lazio 🇮🇹
-             : Visiting Researcher — NOVA IMS Lisbon 🇵🇹
-             : 11 Publications — 4 First Author
-    2025      : Assistant Professor & LLM Tutor
-             : University of Cassino
-    2025-now  : Postdoctoral AI Researcher
-             : University of Eastern Finland 🇫🇮
-             : EU HERMES Project 🇪🇺
+    title Academic and Professional Path
+    2021 : MSc Software Engineering
+         : 110/110 summa cum laude
+         : University of Cassino and Southern Lazio
+    2021-2022 : Research Fellow
+              : Handwriting ML and acquisition software
+    2022-2026 : PhD in Artificial Intelligence
+              : University of Cassino and Southern Lazio
+    2024 : Visiting PhD Researcher
+         : NOVA IMS, Universidade NOVA de Lisboa
+    2024-2025 : Adjunct Assistant Professor in AI
+              : MSc Software Engineering
+    2026-now : Postdoctoral Researcher
+             : University of Eastern Finland
+             : HERMES and THz-Skin
 ```
 
-<br>
+## Awards, service & mentoring
 
-## 💻 Tech Stack
+- **Best EvoApps Paper Award — EvoStar 2026**, Toulouse
+- **Workshop Chair — BIOMAP @ ICPR 2026**
+- **Local Organising Committee — International Conference on Nano-, Tera-, and Bio-Photonics 2026**, Joensuu
+- **Journal reviewer:** Discover Artificial Intelligence, Intelligence-Based Medicine, Engineering Applications of Artificial Intelligence, Applied Soft Computing, Scientific Reports
+- **Conference reviewer:** GECCO 2026, PPSN 2026, BIOMAP/AHIA @ ICPR 2026, MCMI @ ICPR 2024
+- **IEEE Trainer for Europe — 2024**
+- **UEF Summer Internship Supervisor — 2026**
+- **Generative AI course tutor — 2025**
+
+## Technical stack
 
 <details open>
-<summary><b>🐍 Languages</b></summary>
+<summary><b>AI / ML / Scientific Computing</b></summary>
+<br>
+
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
+![SciPy](https://img.shields.io/badge/SciPy-8CAAE6?style=for-the-badge&logo=scipy&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)
+
+**Methods:** evolutionary computation · genetic programming · Bayesian networks · conformal prediction · uncertainty quantification · SHAP/XAI · multimodal learning
+
+</details>
+
+<details open>
+<summary><b>Programming & Research Software</b></summary>
 <br>
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
 ![C#](https://img.shields.io/badge/C%23-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)
-
-</details>
-
-<details open>
-<summary><b>🧠 AI / ML / Deep Learning</b></summary>
-<br>
-
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
-![Lightning](https://img.shields.io/badge/Lightning-792EE5?style=for-the-badge&logo=pytorchlightning&logoColor=white)
-![scikit-learn](https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)
-![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
-![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
-![SciPy](https://img.shields.io/badge/SciPy-8CAAE6?style=for-the-badge&logo=scipy&logoColor=white)
-![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)
-![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)
-![HuggingFace](https://img.shields.io/badge/HuggingFace-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black)
-
-</details>
-
-<details>
-<summary><b>📊 Data & Signal Processing</b></summary>
-<br>
-
-![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge&logo=python&logoColor=white)
-![Plotly](https://img.shields.io/badge/Plotly-3F4F75?style=for-the-badge&logo=plotly&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
 
 </details>
 
 <details>
-<summary><b>☁️ DevOps & Infrastructure</b></summary>
+<summary><b>Infrastructure, HPC & Agentic AI</b></summary>
 <br>
 
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 ![Azure](https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)
+![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)
+![Hugging Face](https://img.shields.io/badge/Hugging_Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black)
+
+**Infrastructure:** Docker · Kubernetes/GPU orchestration · Linux · CINECA HPC · reproducible ML workflows
 
 </details>
 
-<details>
-<summary><b>🗄️ Databases</b></summary>
-<br>
+## GitHub activity
 
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![Neo4j](https://img.shields.io/badge/Neo4j-4581C3?style=for-the-badge&logo=neo4j&logoColor=white)
+<!--
+The previous streak-stats.demolab.com badge was returning:
+"Failed to retrieve contributions. This is likely a GitHub API issue."
+It has therefore been removed rather than displaying a broken or unverifiable streak number.
 
-</details>
-
-<br>
-
-## 📊 GitHub Stats
+The contribution visualisations below are dynamic. GitHub's contribution graph should be treated
+as the source of truth for contribution-day counting.
+-->
 
 <div align="center">
 
-<!-- <img height="180" src="https://github-readme-stats.vercel.app/api?username=Narden91&show_icons=true&theme=github_dark&hide_border=true&bg_color=0d1117&title_color=58A6FF&icon_color=58A6FF&text_color=c9d1d9&count_private=true" />
-<img height="180" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Narden91&layout=compact&theme=github_dark&hide_border=true&bg_color=0d1117&title_color=58A6FF&text_color=c9d1d9&langs_count=8" />
-
-<br> -->
-
-[![GitHub Streak](https://streak-stats.demolab.com?user=Narden91&theme=github-dark-blue&hide_border=true&background=0d1117&stroke=58A6FF&ring=58A6FF&fire=FF6D00&currStreakLabel=58A6FF)](https://git.io/streak-stats)
-
-</div>
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Narden91&theme=github_dark" width="96%" alt="GitHub profile summary"/>
 
 <br>
 
-## 🏅 Certifications
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=Narden91&theme=github-compact&hide_border=true&area=true&custom_title=Contribution%20Activity" width="96%" alt="GitHub contribution activity"/>
+
+<br>
+
+![Followers](https://img.shields.io/github/followers/Narden91?style=for-the-badge&logo=github&label=Followers)
+![Profile Views](https://komarev.com/ghpvc/?username=Narden91&color=58A6FF&style=for-the-badge&label=Profile+Views)
+
+</div>
+
+> **About streaks:** I do not hard-code a streak number in this README. A streak is only meaningful if it is computed from GitHub's contribution data, and third-party streak services can lag, rate-limit, or fail. The activity graph above updates dynamically and avoids reporting a stale number.
+
+## Certifications
 
 <div align="center">
 
 ![Azure AI](https://img.shields.io/badge/Microsoft_Azure_AI_Fundamentals-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)
-![Software Engineering License](https://img.shields.io/badge/Licensed_Software_Engineer-2E8B57?style=for-the-badge&logo=checkmarx&logoColor=white)
-![ESB B2](https://img.shields.io/badge/English_B2_Certified-FF6F00?style=for-the-badge&logo=duolingo&logoColor=white)
+![Hugging Face](https://img.shields.io/badge/Hugging_Face-AI_Agents_Fundamentals-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black)
+![AI Literacy](https://img.shields.io/badge/EU_AI_Act-AI_Literacy-0052CC?style=for-the-badge&logo=europeanunion&logoColor=white)
+![Software Engineer](https://img.shields.io/badge/Professional_Qualification-Software_Engineer-2E8B57?style=for-the-badge)
 
 </div>
 
-<br>
+## Collaboration
 
-## 🌍 Beyond Code
+I am open to research collaborations involving:
 
-| | |
-|---|---|
-| 📍 **Based in** | Joensuu, Finland 🇫🇮 |
-| 🇮🇹 **From** | Italy |
-| 🇵🇹 **Lived in** | Porto & Lisbon, Portugal |
-| 📖 **Reading** | *Atomic Habits* — James Clear |
-| 💪 **Fitness** | Gym 3×/week • Swimming • Hiking |
-| 🌱 **Learning** | Conformal Prediction • Causal Inference • DevOps |
-| 🗣️ **Languages** | Italian (Native) • English (B2) |
-
----
+**AI for spectroscopy · computational photonics · uncertainty-aware ML · inverse problems · evolutionary computation · healthcare AI · explainable AI · scientific software**
 
 <div align="center">
 
-### 🤝 Let's Collaborate
+<br>
 
-*Open to collaborations in **Spectroscopy AI**, **Healthcare AI**, **Computer Vision**, and **Explainable ML** research.*
+[![GitHub](https://img.shields.io/badge/GitHub-Narden91-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Narden91)
+[![UEF](https://img.shields.io/badge/University_of_Eastern_Finland-Research_Profile-005F86?style=for-the-badge)](https://uefconnect.uef.fi/en/emanuele.nardone/)
+[![Email](https://img.shields.io/badge/Contact-Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:emanuele.nardone91@gmail.com)
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=110&section=footer" width="100%" alt="footer"/>
 
 </div>
