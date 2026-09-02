@@ -15,7 +15,7 @@
 
 [![UEF](https://img.shields.io/badge/UEF-Research_Profile-005F86?style=for-the-badge)](https://uefconnect.uef.fi/en/emanuele.nardone/)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0005--8718--5435-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0009-0005-8718-5435)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/emanuelenardone-91)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/emanuelenardone)
 [![ResearchGate](https://img.shields.io/badge/ResearchGate-Profile-00CCBB?style=for-the-badge&logo=researchgate&logoColor=white)](https://www.researchgate.net/profile/Emanuele-Nardone)
 [![Portfolio](https://img.shields.io/badge/Portfolio-Website-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://narden91.github.io/curriculumwebsite/)
 [![Email](https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:emanuele.nardone91@gmail.com)
