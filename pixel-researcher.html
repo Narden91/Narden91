@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pixel Researcher</title>
+<style>
+  :root { box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); height: 100%; background: #0a0a18; }
+  body { margin: 0; height: 100%; overflow: hidden; background: #0a0a18; }
+  #stage {
+    position: fixed;
+    top: env(safe-area-inset-top, 0px); right: env(safe-area-inset-right, 0px);
+    bottom: env(safe-area-inset-bottom, 0px); left: env(safe-area-inset-left, 0px);
+  }
+  #screen { display: block; image-rendering: crisp-edges; image-rendering: pixelated; }
+</style>
+</head>
+<body>
+<div id="stage"><canvas id="screen" aria-label="Animated pixel art of an AI researcher launching a training run from a laptop at night"></canvas></div>
+<script>
+(function () {
+  'use strict';
+
+  // ======================================================================
+  //  Logical screen & timing
+  // ======================================================================
+  const W = 128, H = 96, N = W * H;
+  const FLOOR_Y = 80;                 // floor edge row
+  const AX = 34, AY = FLOOR_Y - 1;    // researcher anchor: centre of feet, bottom sprite row
+  const STEP_MS = 1000 / 60;          // fixed simulation step
+  const POSE_STEP = 6;                // sprite pose is re-sampled every 6 ticks -> 10 fps
+  const TAU = Math.PI * 2;
+
+  // ======================================================================
+  //  Palette — every pixel on screen is one of these 25 entries
+  // ======================================================================
+  const PAL = [
+    '#0a0a18', '#11122c', '#1a1c44', '#252a5e', '#34387a', //  0-4  night: window sky, wall
+    '#fffbea', '#e6dfc0', '#a8a092',                       //  5-7  white, moon / paper
+    '#262235', '#3e384f', '#5c5470',                       //  8-10 hardware / floor greys
+    '#120e1c', '#1f2c55', '#2f4a82', '#e2a33c',            // 11-14 outline, shirt shadow/main, gold
+    '#f4c7a1', '#b8775c',                                  // 15-16 skin
+    '#23213a', '#7593cc',                                  // 17-18 hair, shirt dots
+    '#ff7a6b', '#7a2033',                                  // 19-20 coral, mouth
+    '#8ff8ff', '#36b2f0', '#a45cff', '#4b2596'             // 21-24 compute glow
+  ];
+  const VOID = 0, SKY1 = 1, SKY2 = 2, SKY3 = 3, SKY4 = 4;
+  const WHITE = 5, MOON = 6, MOON_D = 7;
+  const ST_D = 8, ST_M = 9, ST_L = 10;
+  const R_OUT = 11, SH_D = 12, SH = 13, GOLD = 14;
+  const SKIN = 15, SKIN_D = 16, HAIR = 17, DOT = 18, CORAL = 19, MOUTH = 20;
+  const M_CYAN = 21, M_AZURE = 22, M_VIOLET = 23, M_DEEP = 24;
+
+  // Colour remaps (palette index -> palette index)
+  const FLASH = new Uint8Array(PAL.length); // room lift during the release flash
+  const LIT1 = new Uint8Array(PAL.length);  // floor lit by screen light, soft
+  const LIT2 = new Uint8Array(PAL.length);  // floor lit by screen light, hot
+  for (let i = 0; i < PAL.length; i++) { FLASH[i] = i; LIT1[i] = i; LIT2[i] = i; }
+  FLASH[VOID] = SKY1; FLASH[SKY1] = SKY2; FLASH[SKY2] = SKY3; FLASH[SKY3] = SKY4;
+  FLASH[ST_D] = ST_M; FLASH[ST_M] = ST_L;
+  LIT1[ST_D] = ST_M; LIT1[ST_M] = ST_L; LIT1[R_OUT] = ST_D;
+  LIT2[ST_D] = ST_L; LIT2[ST_M] = ST_L; LIT2[ST_L] = M_AZURE; LIT2[R_OUT] = ST_M;
+
+  const BAYER = new Uint8Array([0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5]);
+
+  // ======================================================================
+  //  Buffers: indexed framebuffer + per-pixel layer mask
+  // ======================================================================
+  const fb = new Uint8Array(N);       // palette indices
+  const mk = new Uint8Array(N);       // 0 empty, 1 body, 2 staff/gem, 3 back arm, 4 outline
+  const bg = new Uint8Array(N);       // baked backdrop
+  const bgFlash = new Uint8Array(N);  // baked backdrop, flash-lifted
+
+  // Deterministic xorshift RNG (no allocation)
+  let seed = 0x2F6E2B1 | 0;
+  function rnd() {
+    seed ^= seed << 13; seed ^= seed >>> 17; seed ^= seed << 5;
+    return (seed >>> 0) / 4294967296;
+  }
+
+  // ======================================================================
+  //  Pixel primitives (integer coordinates only)
+  // ======================================================================
+  let MK = 1; // mask value written by body()
+
+  function put(x, y, c) {
+    if (x >= 0 && y >= 0 && x < W && y < H) fb[y * W + x] = c;
+  }
+  function putBehind(x, y, c) {
+    if (x >= 0 && y >= 0 && x < W && y < H) { const i = y * W + x; if (mk[i] === 0) fb[i] = c; }
+  }
+  function body(x, y, c) {
+    if (x >= 0 && y >= 0 && x < W && y < H) { const i = y * W + x; fb[i] = c; mk[i] = MK; }
+  }
+  function run(x0, x1, y, c) { for (let x = x0; x <= x1; x++) body(x, y, c); }
+
+  // Bresenham; mode 0 = sprite pixel (writes mask), 1 = fx pixel
+  function line(x0, y0, x1, y1, c, fx) {
+    const dx = Math.abs(x1 - x0), dy = -Math.abs(y1 - y0);
+    const sx = x0 < x1 ? 1 : -1, sy = y0 < y1 ? 1 : -1;
+    let err = dx + dy;
+    for (;;) {
+      if (fx) put(x0, y0, c); else body(x0, y0, c);
+      if (x0 === x1 && y0 === y1) break;
+      const e2 = err * 2;
+      if (e2 >= dy) { err += dy; x0 += sx; }
+      if (e2 <= dx) { err += dx; y0 += sy; }
+    }
+  }
+
+  // Tapered segment -> quad in QX/QY, scanline filled at pixel centres.
+  // Float inputs go through a typed-array parameter block (QIN) rather than
+  // function arguments, so V8 never has to box them as heap numbers.
+  const QX = new Float32Array(4), QY = new Float32Array(4);
+  const QIN = new Float32Array(6); // sx, sy, ex, ey, w0, w1
+  function quad() {
+    const sx = QIN[0], sy = QIN[1], ex = QIN[2], ey = QIN[3], w0 = QIN[4], w1 = QIN[5];
+    let dx = ex - sx, dy = ey - sy;
+    const l = Math.sqrt(dx * dx + dy * dy) || 1;
+    dx /= l; dy /= l;
+    const nx = -dy, ny = dx;
+    QX[0] = sx + nx * w0; QY[0] = sy + ny * w0;
+    QX[1] = ex + nx * w1; QY[1] = ey + ny * w1;
+    QX[2] = ex - nx * w1; QY[2] = ey - ny * w1;
+    QX[3] = sx - nx * w0; QY[3] = sy - ny * w0;
+  }
+  function fillQuad(c, onlyOverBody) {
+    let y0 = 1e9, y1 = -1e9;
+    for (let k = 0; k < 4; k++) { if (QY[k] < y0) y0 = QY[k]; if (QY[k] > y1) y1 = QY[k]; }
+    const ya = Math.ceil(y0), yb = Math.floor(y1);
+    for (let y = ya; y <= yb; y++) {
+      let xl = 1e9, xr = -1e9;
+      for (let k = 0; k < 4; k++) {
+        const j = (k + 1) & 3, qa = QY[k], qb = QY[j];
+        if ((y >= qa && y < qb) || (y >= qb && y < qa)) {
+          const x = QX[k] + (y - qa) * (QX[j] - QX[k]) / (qb - qa);
+          if (x < xl) xl = x;
+          if (x > xr) xr = x;
+        }
+      }
+      if (xl > xr) continue;
+      const xa = Math.round(xl), xb = Math.round(xr);
+      for (let x = xa; x <= xb; x++) {
+        if (x < 0 || x >= W || y < 0 || y >= H) continue;
+        const i = y * W + x;
+        if (onlyOverBody) { if (mk[i] & 1) fb[i] = c; }
+        else { fb[i] = c; mk[i] = MK; }
+      }
+    }
+  }
+
+  // ======================================================================
+  //  Backdrop: late-night lab (baked once at startup)
+  // ======================================================================
+  const WIN_X0 = 6, WIN_X1 = 60, WIN_Y0 = 8, WIN_Y1 = 56;   // window frame (outer)
+  const MOON_X = 50, MOON_Y = 19, MOON_R = 5;
+  const MON_X0 = 68, MON_X1 = 100, MON_Y0 = 10, MON_Y1 = 34; // wall monitor (outer)
+  const PLOT_X = 75, PLOT_Y0 = 17, PLOT_Y1 = 30, NCURVE = 22; // loss plot area
+  const RACK_X0 = 105, RACK_X1 = 125, RACK_Y0 = 30;          // GPU rack (outer)
+  const NUNIT = 9, UNIT_Y0 = 34, UNIT_H = 5;
+  const NSTAR = 18;
+  const starX = new Uint8Array(NSTAR), starY = new Uint8Array(NSTAR);
+  const starP = new Uint8Array(NSTAR), starR = new Uint8Array(NSTAR), starBig = new Uint8Array(NSTAR);
+  const CURVE = new Uint8Array(NCURVE);      // loss curve, plot y per step
+
+  function rect(x0, y0, x1, y1, c) {
+    for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) bg[y * W + x] = c;
+  }
+
+  function bake() {
+    // Wall: flat night blue, darkening into the ceiling with ordered dither
+    for (let y = 0; y < FLOOR_Y; y++) for (let x = 0; x < W; x++) {
+      let c = SKY2;
+      if (y < 6 && BAYER[((y & 3) << 2) | (x & 3)] >= y * 3) c = SKY1;
+      bg[y * W + x] = c;
+    }
+    // faint wall panel seams
+    for (let y = 4; y < 76; y++) { bg[y * W + 64] = SKY1; bg[y * W + 102] = SKY1; }
+
+    // ---------- window ----------
+    const ix0 = WIN_X0 + 2, ix1 = WIN_X1 - 2, iy0 = WIN_Y0 + 2, iy1 = WIN_Y1 - 2;
+    for (let y = iy0; y <= iy1; y++) {
+      const v = ((y - iy0) / (iy1 - iy0)) * 3.6, b = v | 0, f = v - b;
+      const t = (f - 0.55) / 0.45;
+      for (let x = ix0; x <= ix1; x++) {
+        let c = b;
+        if (t > 0 && t * 16 > BAYER[((y & 3) << 2) | (x & 3)]) c++;
+        bg[y * W + x] = c > SKY4 ? SKY4 : c;
+      }
+    }
+    // moon + dithered halo, clipped to the glass
+    for (let dy = -MOON_R - 3; dy <= MOON_R + 3; dy++) for (let dx = -MOON_R - 3; dx <= MOON_R + 3; dx++) {
+      const x = MOON_X + dx, y = MOON_Y + dy;
+      if (x < ix0 || x > ix1 || y < iy0 || y > iy1) continue;
+      const i = y * W + x, d = Math.sqrt(dx * dx + dy * dy);
+      if (d <= MOON_R + 0.4) {
+        const s = (-dx * 0.6 + dy * 0.8) / MOON_R;
+        let c = MOON;
+        if (s > 0.6) c = MOON_D; else if (s > 0.35 && ((x + y) & 1)) c = MOON_D;
+        bg[i] = c;
+      } else if (d <= MOON_R + 1.5 || (d <= MOON_R + 3 && ((x + y) & 1))) {
+        bg[i] = bg[i] < SKY4 ? bg[i] + 1 : SKY4;
+      }
+    }
+    bg[(MOON_Y - 1) * W + MOON_X - 2] = MOON_D; bg[(MOON_Y + 1) * W + MOON_X + 1] = MOON_D;
+    bg[(MOON_Y - 3) * W + MOON_X + 2] = WHITE;
+
+    // city skyline along the bottom of the glass (kept low behind the head)
+    let x = ix0;
+    while (x <= ix1) {
+      const w = 3 + ((rnd() * 6) | 0);
+      let top = 44 + ((rnd() * 8) | 0);
+      if (x + w > 24 && x < 46) top = 51 + ((rnd() * 3) | 0);
+      for (let bx = x; bx < x + w && bx <= ix1; bx++) {
+        for (let y = top; y <= iy1; y++) {
+          let c = SKY1;
+          if (y === top) c = SKY2;
+          else if (bx > x && bx < x + w - 1 && ((y - top) % 3) === 2 && ((bx - x) & 1) && rnd() < 0.35) c = rnd() < 0.8 ? GOLD : MOON_D;
+          bg[y * W + bx] = c;
+        }
+      }
+      x += w;
+    }
+    // frame, mullion, sill
+    for (let y = WIN_Y0; y <= WIN_Y1; y++) for (let x2 = WIN_X0; x2 <= WIN_X1; x2++) {
+      const edge = x2 < ix0 || x2 > ix1 || y < iy0 || y > iy1 || x2 === 33 || x2 === 34 || y === 30;
+      if (!edge) continue;
+      let c = ST_M;
+      if (x2 === WIN_X0 || y === WIN_Y0 || x2 === 34) c = ST_L;
+      if (x2 === WIN_X1 || y === WIN_Y1) c = ST_D;
+      bg[y * W + x2] = c;
+    }
+    rect(WIN_X0 - 2, WIN_Y1 + 1, WIN_X1 + 2, WIN_Y1 + 1, ST_L);
+    rect(WIN_X0 - 2, WIN_Y1 + 2, WIN_X1 + 2, WIN_Y1 + 2, ST_D);
+    for (let x2 = WIN_X0 - 1; x2 <= WIN_X1 + 1; x2++) if ((x2 & 1) === 0) bg[(WIN_Y1 + 3) * W + x2] = SKY1;
+
+    // ---------- wall monitor ----------
+    rect(MON_X0, MON_Y0, MON_X1, MON_Y1, R_OUT);
+    rect(MON_X0 + 1, MON_Y0 + 1, MON_X1 - 1, MON_Y1 - 1, ST_D);
+    rect(MON_X0 + 1, MON_Y0 + 1, MON_X1 - 1, MON_Y0 + 1, ST_M);
+    rect(MON_X0 + 2, MON_Y0 + 2, MON_X1 - 2, MON_Y1 - 2, VOID);
+    rect(MON_X0 + 3, MON_Y0 + 3, MON_X0 + 6, MON_Y0 + 3, ST_M);       // title "text"
+    rect(MON_X0 + 8, MON_Y0 + 3, MON_X0 + 9, MON_Y0 + 3, ST_D);
+    for (let y = PLOT_Y0; y <= PLOT_Y1; y++) bg[y * W + PLOT_X - 1] = ST_M;  // y axis
+    for (let x2 = PLOT_X - 1; x2 <= PLOT_X + NCURVE; x2++) bg[PLOT_Y1 * W + x2] = ST_M; // x axis
+    for (let y = PLOT_Y0 + 1; y < PLOT_Y1; y += 4)                          // dotted grid
+      for (let x2 = PLOT_X + 1; x2 < PLOT_X + NCURVE; x2 += 3) bg[y * W + x2] = SKY2;
+    rect(84, MON_Y1 + 1, 86, MON_Y1 + 3, ST_D);                           // wall bracket
+    for (let x2 = MON_X0 + 1; x2 <= MON_X1; x2++) if ((x2 & 1) === 1) bg[(MON_Y1 + 1) * W + x2] = SKY1;
+
+    // loss curve: exponential decay with seeded noise
+    for (let k = 0; k < NCURVE; k++) {
+      const loss = 0.08 + 0.9 * Math.exp(-k / 5.5) + (rnd() - 0.5) * 0.09 * (1 - k / NCURVE);
+      let y = Math.round(PLOT_Y0 + (1 - loss) * (PLOT_Y1 - 2 - PLOT_Y0));
+      if (y < PLOT_Y0) y = PLOT_Y0; if (y > PLOT_Y1 - 1) y = PLOT_Y1 - 1;
+      CURVE[k] = y;
+    }
+
+    // ---------- GPU rack ----------
+    rect(RACK_X0, RACK_Y0, RACK_X1, FLOOR_Y - 1, R_OUT);
+    rect(RACK_X0 + 1, RACK_Y0 + 1, RACK_X1 - 1, FLOOR_Y - 3, ST_D);
+    rect(RACK_X0 + 1, RACK_Y0 + 1, RACK_X1 - 1, RACK_Y0 + 1, ST_L);
+    rect(RACK_X0 + 1, RACK_Y0 + 2, RACK_X1 - 1, RACK_Y0 + 2, ST_M);
+    for (let y = RACK_Y0 + 2; y < FLOOR_Y - 2; y++) { bg[y * W + RACK_X0 + 1] = ST_M; bg[y * W + RACK_X1 - 1] = ST_M; }
+    for (let u = 0; u < NUNIT; u++) {
+      const y0 = UNIT_Y0 + u * UNIT_H;
+      rect(RACK_X0 + 2, y0, RACK_X1 - 2, y0, ST_M);                       // unit bevel
+      rect(RACK_X0 + 2, y0 + 3, RACK_X1 - 2, y0 + 3, R_OUT);              // unit gap
+      for (let x2 = RACK_X0 + 9; x2 <= RACK_X1 - 3; x2 += 2) {            // vents
+        bg[(y0 + 1) * W + x2] = VOID; bg[(y0 + 2) * W + x2] = VOID;
+      }
+    }
+    rect(RACK_X0 + 1, FLOOR_Y - 2, RACK_X0 + 3, FLOOR_Y - 1, ST_M);        // feet
+    rect(RACK_X1 - 3, FLOOR_Y - 2, RACK_X1 - 1, FLOOR_Y - 1, ST_M);
+
+    // ---------- floor: perspective tiles ----------
+    for (let x2 = 0; x2 < W; x2++) {
+      bg[(FLOOR_Y - 1) * W + x2] = x2 >= RACK_X0 && x2 <= RACK_X1 ? bg[(FLOOR_Y - 1) * W + x2] : ST_D; // baseboard
+      bg[FLOOR_Y * W + x2] = ST_L;
+    }
+    for (let y = FLOOR_Y + 1; y < H; y++) {
+      const k = 4.5 / (y - FLOOR_Y + 14);
+      for (let x2 = 0; x2 < W; x2++) {
+        const u0 = Math.floor(((x2 - 64) * k) / 3), u1 = Math.floor(((x2 + 1 - 64) * k) / 3);
+        let c = ST_M;
+        if (y === 84 || y === 89 || u0 !== u1) c = ST_D;
+        else if ((y === 81 || y === 85 || y === 90) && ((x2 * 5) % 7) < 2) c = ST_L;
+        if (y >= 93 && ((x2 + y) & 1)) c = ST_D;
+        bg[y * W + x2] = c;
+      }
+    }
+    for (let x2 = 0; x2 < W; x2++) bg[(H - 1) * W + x2] = ST_D;
+    // contact shadows
+    for (let x2 = AX - 8; x2 <= AX + 8; x2++) bg[FLOOR_Y * W + x2] = ST_D;
+    for (let x2 = AX - 6; x2 <= AX + 6; x2++) if ((x2 & 1) === 0) bg[(FLOOR_Y + 1) * W + x2] = ST_D;
+    for (let x2 = RACK_X0 - 1; x2 <= RACK_X1; x2++) { bg[FLOOR_Y * W + x2] = ST_D; if (x2 & 1) bg[(FLOOR_Y + 1) * W + x2] = ST_D; }
+
+    for (let i = 0; i < N; i++) bgFlash[i] = FLASH[bg[i]];
+
+    // Stars: only in open sky inside the glass
+    let n = 0;
+    while (n < NSTAR) {
+      const sx = WIN_X0 + 3 + ((rnd() * (WIN_X1 - WIN_X0 - 6)) | 0), sy = WIN_Y0 + 3 + ((rnd() * 34) | 0);
+      const b = bg[sy * W + sx];
+      if (b > SKY3) continue;
+      if (bg[(sy + 1) * W + sx] > SKY4 || bg[(sy - 1) * W + sx] > SKY4 ||
+          bg[sy * W + sx + 1] > SKY4 || bg[sy * W + sx - 1] > SKY4) continue;
+      const mx = sx - MOON_X, my = sy - MOON_Y;
+      if (mx * mx + my * my < (MOON_R + 5) * (MOON_R + 5)) continue;
+      starX[n] = sx; starY[n] = sy; starP[n] = (rnd() * 16) | 0;
+      starR[n] = 1 + ((rnd() * 3) | 0); starBig[n] = n < 3 ? 1 : 0;
+      n++;
+    }
+  }
+
+  const TWINKLE = new Uint8Array([0, 0, 0, 1, 1, 2, 3, 3, 2, 1, 1, 0, 0, 0, 0, 0]);
+  const STARC = new Uint8Array([SKY4, MOON_D, MOON, WHITE]);
+  function drawStars() {
+    const tt = tick >> 3; // stepped twinkle clock (7.5 fps)
+    for (let s = 0; s < NSTAR; s++) {
+      const lv = TWINKLE[(tt * starR[s] + starP[s]) & 15];
+      const x = starX[s], y = starY[s];
+      put(x, y, STARC[lv]);
+      if (starBig[s] && lv === 3) {
+        put(x - 1, y, MOON_D); put(x + 1, y, MOON_D); put(x, y - 1, MOON_D); put(x, y + 1, MOON_D);
+      }
+    }
+  }
+
+  // ======================================================================
+  //  State machine & pose
+  //  IDLE = typing, CHARGE = training run, CAST = ship it, RECOVER = celebrate
+  // ======================================================================
+  const S_IDLE = 0, S_CHARGE = 1, S_CAST = 2, S_RECOVER = 3;
+  const DUR = new Int16Array([150, 96, 36, 60]); // all multiples of POSE_STEP
+  const FIRE_AT = 6;                             // CAST tick that launches the job
+  let state = S_IDLE, st = 0, tick = 0;
+
+  // Pose parameters
+  const P_HX = 0, P_HY = 1, P_ROT = 2, P_LEAN = 3, P_TILT = 4, P_SWAY = 5, P_TUFT = 6;
+  const NP = 7;
+  const LID = 7;                                  // laptop lid height (px)
+  // hx/hy: laptop hinge relative to the feet, rot: laptop tilt (rad), tilt: face turn
+  //                               hx   hy   rot  lean tilt sway tuft
+  const K_REST = new Float32Array([ 8,  -7, 0.18,   0,   1,   0,   0]);
+  const K_CHG  = new Float32Array([ 7,  -9, 0.00,  -1,   1,   1,  -1]);
+  const K_CAST = new Float32Array([11, -13, 0.50,   1,   1,  -1,   2]);
+  const cur = new Float32Array(NP);
+  const LAPF = new Float32Array(2);               // sin/cos of the quantized laptop tilt
+
+  // Quantized pose (what actually gets drawn)
+  let qLean = 0, qTilt = 1, qSway = 0, qTuft = 0, qBob = 0, prevBob = 0, qType = 0, qPF = 0;
+  let qEyes = 0, qMouth = 0, qGlint = 0;          // eyes: 0 open, 1 blink, 2 happy; mouth: 0 smile, 1 flat, 2 open
+  let lapX = 0, lapY = 0, gemX = 0, gemY = 0, typX = 0, typY = 0, supX = 0, supY = 0;
+
+  // Keyframe blend. Easing is computed inline so no float crosses a call boundary.
+  function blendPose(A, B, mode) {
+    const t = st / DUR[state];
+    let e;
+    if (mode === 0) e = 0;
+    else if (mode === 1) e = t < 0.5 ? 4 * t * t * t : 1 - (2 - 2 * t) * (2 - 2 * t) * (2 - 2 * t) / 2; // ease in-out
+    else { const u = st / (FIRE_AT * 2); const v = u > 1 ? 0 : 1 - u; e = 1 - v * v; }          // fast ease-out
+    for (let k = 0; k < NP; k++) cur[k] = A[k] + (B[k] - A[k]) * e;
+  }
+
+  function evalPose() {
+    const t = st / DUR[state];
+    const pf = (tick / POSE_STEP) | 0;
+    qPF = pf;
+    if (state === S_IDLE) blendPose(K_REST, K_REST, 0);
+    else if (state === S_CHARGE) blendPose(K_REST, K_CHG, 1);
+    else if (state === S_CAST) blendPose(K_CHG, K_CAST, 2);
+    else blendPose(K_CAST, K_REST, 1);
+
+    // Idle secondary motion (hair tuft, lanyard), faded in during recovery
+    const idleW = state === S_IDLE ? 1 : state === S_RECOVER ? t * t : 0;
+    const ph = pf * TAU / 20;
+    cur[P_TUFT] += idleW * 1.2 * Math.sin(ph);
+    cur[P_SWAY] += idleW * 0.8 * Math.sin(ph + 1.3);
+
+    let bob = 0;
+    if (idleW > 0.5) bob = (pf >> 2) & 1;                       // 2-frame idle bob
+    if (state === S_CAST && st >= FIRE_AT) bob = 1;             // dip into the push
+    if (state === S_RECOVER && t < 0.6) bob = (pf >> 1) & 1;    // happy bounce
+    let trem = 0;                                               // excited jitter late in the run
+    if ((state === S_CHARGE && t > 0.55) || (state === S_CAST && st < FIRE_AT)) trem = pf & 1;
+
+    prevBob = qBob; qBob = bob;
+    qLean = Math.round(cur[P_LEAN]);
+    qTilt = Math.round(cur[P_TILT]);
+    qSway = Math.round(cur[P_SWAY]);
+    qTuft = Math.round(cur[P_TUFT]) + prevBob;                  // tuft lags the bob by a frame
+
+    // typing cadence and expression
+    qType = state === S_IDLE ? (pf >> 1) & 1 : state === S_CHARGE ? pf & 1 : 0;
+    if (state === S_IDLE) { qEyes = (pf % 31) === 0 ? 1 : 0; qMouth = 0; }
+    else if (state === S_CHARGE) { qEyes = 0; qMouth = 1; }
+    else if (state === S_CAST) { qEyes = st < FIRE_AT ? 0 : 2; qMouth = st < FIRE_AT ? 1 : 2; }
+    else { qEyes = t < 0.75 ? 2 : 0; qMouth = t < 0.75 ? 2 : 0; if (t < 0.7) qTilt = 0; } // turns to camera
+    qGlint = ((state === S_CHARGE && t > 0.5) || (state === S_CAST && st < FIRE_AT + 12)) ? 1 : 0;
+
+    // Laptop: tilt is quantized to 0.05 rad so the lid only changes shape on pose frames
+    const rot = Math.round((cur[P_ROT] + trem * 0.05) * 20) / 20;
+    const sn = Math.sin(rot), cs = Math.cos(rot);
+    LAPF[0] = sn; LAPF[1] = cs;
+    lapX = AX + Math.round(cur[P_HX]); lapY = AY + Math.round(cur[P_HY]) + bob - trem;
+    gemX = Math.round(lapX + sn * LID * 0.5); gemY = Math.round(lapY - cs * LID * 0.5);
+    const bcx = lapX - sn * 1.9, bcy = lapY + cs * 1.9;         // keyboard deck centre
+    typX = Math.round(bcx - cs * 3.2); typY = Math.round(bcy - sn * 3.2) - 1 - qType;
+    supX = Math.round(bcx + cs * 3.0 - sn * 1.6); supY = Math.round(bcy + sn * 3.0 + cs * 1.6);
+  }
+
+  // ======================================================================
+  //  Researcher sprite (procedural, ~24x33): messy black hair, thick
+  //  glasses, big grin, navy polka-dot shirt, lanyard badge, laptop
+  // ======================================================================
+  const FHW = new Int8Array([3, 5, 6, 6, 6, 6, 6, 6, 6, 6]);            // face half-width, chin up
+  const HL = new Int8Array([-7, -7, -8, -7, -8, -7, -6, -5, -4]);        // hair rows k8..k16
+  const HR = new Int8Array([7, 7, 7, 8, 7, 7, 6, 5, 3]);
+  const KEYC = new Uint8Array([CORAL, GOLD, M_CYAN, M_VIOLET]);          // RGB keyboard wave
+
+  // Shoulder (sx, sy) and hand pixel (fx, fy) are integers; the sleeve aims at the hand.
+  function drawArm(sx, sy, fx, fy, front) {
+    const hx = fx + 0.5, hy = fy + 0.5;
+    let dx = hx - sx, dy = hy - sy;
+    const l = Math.sqrt(dx * dx + dy * dy) || 1;
+    dx /= l; dy /= l;
+    const cx = hx - dx * 1.3, cy = hy - dy * 1.3;
+    QIN[0] = sx; QIN[1] = sy; QIN[2] = cx + dx * 0.5; QIN[3] = cy + dy * 0.5; QIN[4] = 2.3; QIN[5] = 2.1;
+    quad(); fillQuad(R_OUT, true);                                   // separates arm from chest
+    QIN[2] = cx; QIN[3] = cy; QIN[4] = 1.4; QIN[5] = 1.1;
+    quad(); fillQuad(front ? SH : SH_D, false);
+    if (front) line(Math.round(sx + dx * 3), Math.round(sy + dy * 3) + 1,
+                    Math.round(cx), Math.round(cy) + 1, SH_D, 0);     // underside shade
+  }
+
+  function drawPerson() {
+    const a = AX, g = AY, bob = qBob, lean = qLean;
+    MK = 1;
+
+    // --- shoes + trousers ---
+    run(a - 5, a - 1, g, HAIR); run(a + 1, a + 5, g, HAIR);
+    for (let r = -4; r <= -1; r++) {
+      const y = g + r;
+      run(a - 4, a - 1, y, ST_M); run(a + 1, a + 4, y, ST_M);
+      body(a - 4, y, ST_D); body(a + 1, y, ST_D);
+      if (r <= -3) body(a, y, ST_D);
+    }
+
+    // --- shirt ---
+    for (let i = 0; i < 10; i++) {
+      const y = g - 14 + i + bob;
+      const c = a + Math.round(lean * (1 - i / 9));
+      const L = i === 0 ? c - 4 : c - 5, R = i === 0 ? c + 4 : c + 5;
+      for (let x = L; x <= R; x++) {
+        let col = x < c - 1 ? SH_D : SH;
+        if ((i & 1) === 1 && ((x - c + 16 + (i & 2)) & 3) === 0) col = col === SH_D ? SH : DOT; // polka dots
+        if (i === 9) col = SH_D;
+        body(x, y, col);
+      }
+      if (i === 0) { body(c - 1, y, SKIN_D); body(c, y, SKIN_D); body(c - 2, y, DOT); body(c + 1, y, DOT); }
+    }
+    // lanyard + badge
+    const ty = g - 14 + bob, lc = a + lean, bx = a + Math.round(lean * 0.5) + qSway;
+    body(lc - 2, ty + 1, M_AZURE); body(lc + 1, ty + 1, M_AZURE);
+    body(lc - 2, ty + 2, M_AZURE); body(lc + 1, ty + 2, M_AZURE);
+    body(lc - 1, ty + 3, M_AZURE); body(lc, ty + 3, M_AZURE);
+    body(bx - 1, ty + 4, GOLD);
+    run(bx - 2, bx, ty + 5, WHITE);
+    body(bx - 2, ty + 6, M_AZURE); body(bx - 1, ty + 6, WHITE); body(bx, ty + 6, WHITE);
+    body(bx - 2, ty + 7, WHITE); body(bx - 1, ty + 7, MOON_D); body(bx, ty + 7, MOON_D);
+
+    // --- head ---
+    const y0 = g - 15 + bob, hc = a + lean, fo = qTilt;
+    for (let k = 0; k < 10; k++) {
+      const hw = FHW[k], y = y0 - k;
+      for (let x = hc - hw; x <= hc + hw; x++) body(x, y, (x === hc - hw || (k === 0 && x === hc + hw)) ? SKIN_D : SKIN);
+    }
+    for (let k = 4; k <= 6; k++) { body(hc - 7, y0 - k, k === 5 ? SKIN_D : SKIN); body(hc + 7, y0 - k, k === 5 ? SKIN_D : SKIN); }
+    // hair
+    for (let k = 8; k <= 16; k++) {
+      const y = y0 - k, j = k - 8;
+      for (let dx = HL[j]; dx <= HR[j]; dx++) {
+        if (k === 8 && (dx === -3 || dx === -2 || dx === 1 || dx === 2)) continue;  // fringe gaps
+        let c = HAIR;
+        if ((k === 13 && (dx === -4 || dx === -3)) || (k === 14 && (dx === -1 || dx === 0)) || (k === 12 && dx === 4)) c = ST_M;
+        body(hc + dx, y, c);
+      }
+    }
+    body(hc - 4, y0 - 17, HAIR); body(hc - 3, y0 - 17, HAIR); body(hc - 1, y0 - 17, HAIR); body(hc, y0 - 17, HAIR);
+    body(hc - 4, y0 - 18, HAIR); body(hc - 1, y0 - 18, HAIR);                            // crown spikes
+    body(hc + 7, y0 - 15, HAIR); body(hc - 7, y0 - 16, HAIR);
+    body(hc + 2, y0 - 17, HAIR); body(hc + 3 + qTuft, y0 - 18, HAIR); body(hc + 4 + qTuft, y0 - 18, HAIR); // tuft
+    body(hc - 8, y0 - 9, HAIR);
+    // glasses: two thick rectangular frames
+    for (let side = 0; side < 2; side++) {
+      const x0 = side === 0 ? hc - 6 + fo : hc + 2 + fo;
+      for (let x = x0; x <= x0 + 4; x++) { body(x, y0 - 4, R_OUT); body(x, y0 - 7, R_OUT); }
+      body(x0, y0 - 5, R_OUT); body(x0, y0 - 6, R_OUT); body(x0 + 4, y0 - 5, R_OUT); body(x0 + 4, y0 - 6, R_OUT);
+      if (qEyes === 0) { body(x0 + 2, y0 - 5, R_OUT); body(x0 + 2, y0 - 6, R_OUT); }
+      else if (qEyes === 1) { body(x0 + 1, y0 - 5, R_OUT); body(x0 + 2, y0 - 5, R_OUT); body(x0 + 3, y0 - 5, R_OUT); }
+      else { body(x0 + 1, y0 - 5, R_OUT); body(x0 + 2, y0 - 6, R_OUT); body(x0 + 3, y0 - 5, R_OUT); }
+      if (qGlint) body(x0 + 3, y0 - 6, WHITE);
+    }
+    body(hc - 1 + fo, y0 - 6, R_OUT); body(hc + fo, y0 - 6, R_OUT); body(hc + 1 + fo, y0 - 6, R_OUT);
+    if (fo < 1) body(hc - 7, y0 - 6, R_OUT);
+    if (fo < 0 || fo === 0) body(hc + 7, y0 - 6, R_OUT);
+    // cheeks, mole, mouth
+    const m = hc + fo;
+    if (m - 6 >= hc - 6) { body(m - 6, y0 - 3, CORAL); }
+    body(m - 5, y0 - 3, CORAL);
+    body(m + 5, y0 - 3, CORAL);
+    if (m + 6 <= hc + 6) body(m + 6, y0 - 3, CORAL);
+    body(m - 4, y0 - 1, SKIN_D);
+    if (qMouth === 2) {
+      run(m - 2, m + 2, y0 - 3, MOUTH);
+      body(m - 2, y0 - 2, MOUTH); run(m - 1, m + 1, y0 - 2, CORAL); body(m + 2, y0 - 2, MOUTH);
+      run(m - 1, m + 1, y0 - 1, MOUTH);
+    } else if (qMouth === 0) {
+      run(m - 1, m + 1, y0 - 2, MOUTH); body(m - 2, y0 - 3, MOUTH); body(m + 2, y0 - 3, MOUTH);
+    } else {
+      run(m - 1, m + 1, y0 - 2, MOUTH);
+    }
+
+    // --- arms, laptop, hands ---
+    drawArm(a + lean + 4, g - 13 + bob, supX, supY, false);   // supporting arm, mostly behind the lid
+    drawArm(a + lean - 4, g - 13 + bob, typX, typY, true);    // typing arm crosses the chest
+    MK = 2;
+    drawLaptop();
+    MK = 1;
+    body(typX, typY, SKIN); body(typX + 1, typY, SKIN); body(typX, typY + 1, SKIN_D); body(typX + 1, typY + 1, SKIN_D);
+    body(supX, supY, SKIN); body(supX + 1, supY, SKIN_D);
+  }
+
+  function drawLaptop() {
+    const sn = LAPF[0], cs = LAPF[1], lx = lapX, ly = lapY;
+    // lid (back faces the viewer)
+    QIN[0] = lx - sn * 0.9; QIN[1] = ly + cs * 0.9; QIN[2] = lx + sn * (LID + 0.9); QIN[3] = ly - cs * (LID + 0.9);
+    QIN[4] = 5.3; QIN[5] = 5.3;
+    quad(); fillQuad(R_OUT, false);
+    QIN[0] = lx; QIN[1] = ly; QIN[2] = lx + sn * LID; QIN[3] = ly - cs * LID; QIN[4] = 4.3; QIN[5] = 4.3;
+    quad(); fillQuad(ST_D, false);
+    const tx = lx + sn * (LID - 0.3), ty = ly - cs * (LID - 0.3);
+    line(Math.round(tx - cs * 3.6), Math.round(ty - sn * 3.6), Math.round(tx + cs * 3.6), Math.round(ty + sn * 3.6), ST_M, 0);
+    // keyboard deck, with an RGB light strip along the front edge
+    const bx = lx - sn * 1.9, by = ly + cs * 1.9;
+    QIN[0] = bx - cs * 6.2; QIN[1] = by - sn * 6.2; QIN[2] = bx + cs * 6.2; QIN[3] = by + sn * 6.2; QIN[4] = 1.7; QIN[5] = 1.7;
+    quad(); fillQuad(R_OUT, false);
+    QIN[0] = bx - cs * 5.4; QIN[1] = by - sn * 5.4; QIN[2] = bx + cs * 5.4; QIN[3] = by + sn * 5.4; QIN[4] = 0.8; QIN[5] = 0.8;
+    quad(); fillQuad(ST_M, false);
+    const kx = bx + sn * 0.6, ky = by - cs * 0.6;
+    for (let k = -4; k <= 4; k++) body(Math.round(kx + cs * k), Math.round(ky + sn * k) + 1, KEYC[(k + 8 + qPF) & 3]);
+    drawGem(gemX, gemY);                                      // glowing logo on the lid
+  }
+
+  // Logo appearance (updated at 20 fps in update())
+  let gemCore = M_CYAN, gemLit = M_CYAN, gemMid = M_AZURE, gemDark = M_DEEP, gemStar = 0;
+  function drawGem(x, y) {
+    body(x, y, gemCore);
+    body(x - 1, y, gemLit); body(x, y - 1, gemLit);
+    body(x + 1, y, gemMid); body(x, y + 1, gemDark);
+    if (gemStar) {
+      body(x - 2, y, M_CYAN); body(x + 2, y, M_CYAN); body(x, y - 2, M_CYAN); body(x, y + 2, M_CYAN);
+      if (gemStar > 1) { body(x - 3, y, M_AZURE); body(x + 3, y, M_AZURE); body(x, y - 3, M_AZURE); body(x, y + 3, M_AZURE); }
+    }
+  }
+
+  // ======================================================================
+  //  Outline + rim light (operate on the mask, so they are pixel-exact)
+  // ======================================================================
+  function outlinePass() {
+    for (let y = 0; y < H; y++) {
+      for (let x = 0; x < W; x++) {
+        const i = y * W + x;
+        if (mk[i] !== 0) continue;
+        if ((x > 0 && (mk[i - 1] & 1)) || (x < W - 1 && (mk[i + 1] & 1)) ||
+            (y > 0 && (mk[i - W] & 1)) || (y < H - 1 && (mk[i + W] & 1))) {
+          fb[i] = R_OUT; mk[i] = 4;
+        }
+      }
+    }
+  }
+
+  const RIM = new Uint8Array([0, M_DEEP, M_AZURE, M_CYAN, WHITE]);
+  const GLOW = new Float32Array(1); // gem light level 0..1
+  GLOW[0] = 0.2;
+  function rimPass() {
+    const reach = 9 + GLOW[0] * 26, inv = 1 / reach, gain = 1.2 + GLOW[0] * 2.6;
+    for (let y = 1; y < H - 1; y++) {
+      for (let x = 1; x < W - 1; x++) {
+        const i = y * W + x;
+        if (mk[i] !== 4) continue;
+        const dx = gemX - x, dy = gemY - y;
+        const sx = dx > 0 ? 1 : dx < 0 ? -1 : 0, sy = dy > 0 ? W : dy < 0 ? -W : 0;
+        const lit = (sx !== 0 && mk[i + sx] === 0 && (mk[i - sx] & 1)) ||
+                    (sy !== 0 && mk[i + sy] === 0 && (mk[i - sy] & 1));
+        if (!lit) continue;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        if (d >= reach) continue;
+        let k = ((1 - d * inv) * gain + BAYER[((y & 3) << 2) | (x & 3)] / 16 - 0.5) | 0;
+        if (k <= 0) continue;
+        if (k > 4) k = 4;
+        fb[i] = RIM[k];
+      }
+    }
+  }
+
+  // Dithered glow around the gem (sky pixels only, drawn under the sprite)
+  function drawHalo() {
+    const r = 2.5 + GLOW[0] * 8, R = Math.ceil(r), gain = 1 + GLOW[0] * 1.6;
+    for (let dy = -R; dy <= R; dy++) {
+      const y = gemY + dy;
+      if (y < 0 || y >= H) continue;
+      for (let dx = -R; dx <= R; dx++) {
+        const x = gemX + dx;
+        if (x < 0 || x >= W) continue;
+        const d2 = dx * dx + dy * dy;
+        if (d2 >= r * r) continue;
+        const i = y * W + x;
+        if (fb[i] > SKY4) continue;
+        const k = ((1 - Math.sqrt(d2) / r) * gain + BAYER[((y & 3) << 2) | (x & 3)] / 16 - 0.5) | 0;
+        if (k <= 0) continue;
+        fb[i] = k === 1 ? M_DEEP : k === 2 ? M_VIOLET : M_AZURE;
+      }
+    }
+  }
+
+  // Magic light pooling on the stone floor
+  function floorLight(lx, ly, pct) {           // integer args only: pct = strength * 100
+    const inten = pct * 0.01 * (1 - (FLOOR_Y - ly) / 70);
+    if (inten <= 0.05) return;
+    const rx = 5 + inten * 22, ry = 2 + inten * 7;
+    const x0 = Math.max(0, Math.floor(lx - rx)), x1 = Math.min(W - 1, Math.ceil(lx + rx));
+    const y1 = Math.min(H - 1, Math.ceil(FLOOR_Y + ry));
+    for (let y = FLOOR_Y; y <= y1; y++) {
+      const ey = (y - FLOOR_Y) / ry;
+      for (let x = x0; x <= x1; x++) {
+        const ex = (x - lx) / rx, e = ex * ex + ey * ey;
+        if (e >= 1) continue;
+        const k = ((1 - e) * inten * 2.4 + BAYER[((y & 3) << 2) | (x & 3)] / 16 - 0.5) | 0;
+        const i = y * W + x;
+        if (k >= 2) fb[i] = LIT2[fb[i]];
+        else if (k === 1) fb[i] = LIT1[fb[i]];
+      }
+    }
+  }
+
+  // ======================================================================
+  //  Particles: preallocated pool with a free-list stack
+  // ======================================================================
+  const MAXP = 384;
+  const K_DEAD = 0, K_ORBIT = 1, K_FREE = 2;
+  const pX = new Float32Array(MAXP), pY = new Float32Array(MAXP);
+  const pVX = new Float32Array(MAXP), pVY = new Float32Array(MAXP);
+  const pA = new Float32Array(MAXP), pR = new Float32Array(MAXP), pW = new Float32Array(MAXP), pDR = new Float32Array(MAXP);
+  const pDrag = new Float32Array(MAXP), pGrav = new Float32Array(MAXP);
+  const pLife = new Int16Array(MAXP), pMax = new Int16Array(MAXP);
+  const pKind = new Uint8Array(MAXP), pRamp = new Uint8Array(MAXP), pBig = new Uint8Array(MAXP), pBack = new Uint8Array(MAXP);
+  const freeList = new Int16Array(MAXP);
+  let freeTop = 0;
+  for (let i = MAXP - 1; i >= 0; i--) freeList[freeTop++] = i;
+
+  // Colour ramps: white -> glow -> dark, plus four confetti colours that hold then fade
+  const RAMP = new Uint8Array([
+    WHITE, M_CYAN, M_CYAN, M_AZURE, M_VIOLET, M_DEEP,   // 0 cyan
+    WHITE, M_VIOLET, M_VIOLET, M_DEEP, SKY3,            // 1 violet
+    WHITE, M_CYAN, M_AZURE, M_AZURE, M_DEEP,            // 2 azure
+    ST_L, ST_M, ST_D,                                   // 3 dust
+    CORAL, CORAL, CORAL, CORAL, MOUTH,                  // 4 confetti coral
+    GOLD, GOLD, GOLD, GOLD, SKIN_D,                     // 5 confetti gold
+    M_CYAN, M_CYAN, M_CYAN, M_CYAN, M_AZURE,            // 6 confetti cyan
+    M_VIOLET, M_VIOLET, M_VIOLET, M_VIOLET, M_DEEP      // 7 confetti violet
+  ]);
+  const ROFS = new Uint8Array([0, 6, 11, 16, 19, 24, 29, 34]);
+  const RLEN = new Uint8Array([6, 5, 5, 3, 5, 5, 5, 5]);
+  const CONF = 2; // pBig value marking a confetti chip
+
+
+  function spawn() {
+    if (freeTop === 0) return -1;
+    const i = freeList[--freeTop];
+    pBig[i] = 0; pBack[i] = 0; pVX[i] = 0; pVY[i] = 0; pDrag[i] = 1; pGrav[i] = 0;
+    return i;
+  }
+  function kill(i) { pKind[i] = K_DEAD; freeList[freeTop++] = i; }
+
+  // Claims a free particle; the caller writes position/velocity straight into the pool.
+  function emit(life, ramp, big) {
+    const i = spawn();
+    if (i >= 0) { pKind[i] = K_FREE; pLife[i] = life; pMax[i] = life; pRamp[i] = ramp; pBig[i] = big; }
+    return i;
+  }
+
+  function spawnOrbit(kp) {          // kp: charge progress 0..100 (integer, avoids boxing)
+    const i = spawn();
+    if (i < 0) return;
+    pKind[i] = K_ORBIT;
+    pA[i] = rnd() * TAU;
+    pR[i] = 10 + rnd() * 8;
+    pW[i] = (0.07 + rnd() * 0.06) * (rnd() < 0.85 ? 1 : -1);
+    pDR[i] = -(0.12 + rnd() * 0.1 + kp * 0.0014);
+    let life = (pR[i] / -pDR[i]) | 0;
+    if (life > 90) life = 90;
+    pLife[i] = life; pMax[i] = life;
+    pRamp[i] = rnd() < 0.6 ? 0 : 1;
+    pBig[i] = rnd() < 0.15 ? 1 : 0;
+    pX[i] = gemX + Math.cos(pA[i]) * pR[i];
+    pY[i] = gemY + Math.sin(pA[i]) * pR[i] * 0.55;
+  }
+
+
+  function updateParticles() {
+    for (let i = 0; i < MAXP; i++) {
+      const kind = pKind[i];
+      if (kind === K_DEAD) continue;
+      if (--pLife[i] <= 0) { kill(i); continue; }
+      if (kind === K_ORBIT) {
+        pA[i] += pW[i]; pR[i] += pDR[i];
+        if (pR[i] < 1) { kill(i); continue; }
+        const s = Math.sin(pA[i]);
+        pX[i] = gemX + Math.cos(pA[i]) * pR[i];
+        pY[i] = gemY + s * pR[i] * 0.55;          // tilted orbit
+        pBack[i] = s < 0 ? 1 : 0;                  // far half passes behind the sprite
+      } else {
+        const conf = pBig[i] === CONF;
+        if (conf && pGrav[i] !== 0) pVX[i] += ((tick + i * 13) & 31) < 16 ? 0.025 : -0.025; // flutter
+        pVX[i] *= pDrag[i];
+        pVY[i] = pVY[i] * pDrag[i] + pGrav[i];
+        pX[i] += pVX[i]; pY[i] += pVY[i];
+        if (pY[i] > AY) {
+          pY[i] = AY;
+          if (conf) { pVX[i] = 0; pVY[i] = 0; pGrav[i] = 0; }   // confetti settles on the floor
+          else { pVY[i] *= -0.35; pVX[i] *= 0.7; }
+        }
+        if (pX[i] < -4 || pX[i] > W + 4 || pY[i] < -12) kill(i);
+      }
+    }
+  }
+
+  function drawParticles() {
+    for (let i = 0; i < MAXP; i++) {
+      if (pKind[i] === K_DEAD) continue;
+      const r = pRamp[i], len = RLEN[r];
+      let ri = (((pMax[i] - pLife[i]) * len) / pMax[i]) | 0;
+      if (ri >= len) ri = len - 1;
+      const c = RAMP[ROFS[r] + ri];
+      const x = Math.round(pX[i]), y = Math.round(pY[i]);
+      if (pBig[i] === CONF) {                    // 2-px chip that flips while it falls
+        put(x, y, c);
+        if (pGrav[i] === 0 || (((tick >> 3) + i) & 1)) put(x + 1, y, c); else put(x, y - 1, c);
+        continue;
+      }
+      if (pBack[i]) { putBehind(x, y, c); continue; }
+      put(x, y, c);
+      if (pBig[i] && ri <= 1) {
+        const c2 = RAMP[ROFS[r] + ri + 1];
+        put(x - 1, y, c2); put(x + 1, y, c2); put(x, y - 1, c2); put(x, y + 1, c2);
+      }
+    }
+  }
+
+  // ======================================================================
+  //  Projectile: the finished job flies to the GPU rack
+  // ======================================================================
+  const TRAIL = 8;
+  const trX = new Int16Array(TRAIL), trY = new Int16Array(TRAIL);
+  const TRAILC = new Uint8Array([M_CYAN, M_CYAN, M_AZURE, M_AZURE, M_VIOLET, M_VIOLET, M_DEEP, M_DEEP]);
+  let prjOn = 0, prjAge = 0;
+  const PRJ = new Float32Array(4); // x, y, base y, x velocity
+  const PR_X = 0, PR_Y = 1, PR_Y0 = 2, PR_VX = 3;
+  const RACK_HIT = 48;
+  let rackHit = 0, hitUnit = 0, best = 1;
+
+  function updateProjectile() {
+    if (!prjOn) return;
+    prjAge++;
+    PRJ[PR_VX] = Math.min(3.2, PRJ[PR_VX] + 0.06);
+    PRJ[PR_X] += PRJ[PR_VX];
+    PRJ[PR_Y] = PRJ[PR_Y0] + Math.sin(prjAge * 0.32) * 1.6;
+    for (let k = TRAIL - 1; k > 0; k--) { trX[k] = trX[k - 1]; trY[k] = trY[k - 1]; }
+    trX[0] = Math.round(PRJ[PR_X]); trY[0] = Math.round(PRJ[PR_Y]);
+    for (let k = 0; k < 2; k++) {
+      const i = emit(10 + ((rnd() * 18) | 0), rnd() < 0.5 ? 0 : 2, 0);
+      if (i < 0) break;
+      pX[i] = PRJ[PR_X] - rnd() * 3; pY[i] = PRJ[PR_Y] + (rnd() - 0.5) * 3;
+      pVX[i] = -0.15 - rnd() * 0.3; pVY[i] = (rnd() - 0.5) * 0.35; pDrag[i] = 0.94; pGrav[i] = -0.004;
+    }
+    if (trX[0] >= RACK_X0 - 1) impact();
+  }
+
+  function impact() {
+    prjOn = 0;
+    rackHit = RACK_HIT; best = 1;
+    let u = ((trY[0] - UNIT_Y0) / UNIT_H) | 0;
+    hitUnit = u < 0 ? 0 : u >= NUNIT ? NUNIT - 1 : u;
+    for (let n = 0; n < 12; n++) {
+      const i = emit(10 + ((rnd() * 14) | 0), rnd() < 0.5 ? 0 : 2, 0);
+      if (i < 0) break;
+      pX[i] = RACK_X0 - 1; pY[i] = trY[0];
+      pVX[i] = -0.3 - rnd() * 1.6; pVY[i] = -1.2 + rnd() * 2; pDrag[i] = 0.9; pGrav[i] = 0.04;
+    }
+    if (!reduceMotion) shakeT = 4;
+  }
+
+  function drawProjectile() {
+    for (let k = TRAIL - 1; k > 0; k--) line(trX[k], trY[k], trX[k - 1], trY[k - 1], TRAILC[k], 1);
+    const x = trX[0], y = trY[0], f = (tick >> 1) & 1;
+    for (let dy = -2; dy <= 2; dy++) {
+      for (let dx = -2; dx <= 2; dx++) {
+        const d2 = dx * dx + dy * dy;
+        if (d2 <= 1) put(x + dx, y + dy, WHITE);
+        else if (d2 <= 2) put(x + dx, y + dy, f ? WHITE : M_CYAN);
+        else if (d2 <= 4) put(x + dx, y + dy, f ? M_CYAN : M_AZURE);
+        else if (d2 === 5 && f) put(x + dx, y + dy, M_DEEP);
+      }
+    }
+  }
+
+  // ======================================================================
+  //  Live props: loss curve on the wall monitor, GPU rack status lights
+  // ======================================================================
+  function drawMonitor() {
+    let n = NCURVE;
+    if (state === S_CHARGE) n = 1 + ((((st - st % 3) * (NCURVE - 1)) / DUR[S_CHARGE]) | 0);
+    for (let k = 0; k < n; k++)
+      for (let y = CURVE[k] + 2; y < PLOT_Y1; y++) if (((k + y) & 1) === 0) put(PLOT_X + k, y, M_DEEP);
+    for (let k = 0; k < n - 1; k++) line(PLOT_X + k, CURVE[k], PLOT_X + k + 1, CURVE[k + 1], M_CYAN, 1);
+    const hx = PLOT_X + n - 1, hy = CURVE[n - 1];
+    put(hx, hy, M_CYAN);
+    if (state === S_CHARGE) put(hx, hy, ((tick >> 2) & 1) ? WHITE : M_AZURE);   // live cursor
+    if (best && state !== S_CHARGE) {
+      put(hx, hy, WHITE);
+      if (state !== S_RECOVER || ((tick >> 3) & 1)) { put(hx - 1, hy, GOLD); put(hx + 1, hy, GOLD); put(hx, hy - 1, GOLD); put(hx, hy + 1, GOLD); }
+    }
+    put(MON_X1 - 4, MON_Y0 + 3, state === S_CHARGE ? (((tick >> 3) & 1) ? M_CYAN : ST_M) : best ? GOLD : ST_M);
+  }
+
+  function drawRack() {
+    const busy = state === S_CHARGE || (state === S_CAST && st < FIRE_AT);
+    const tt = busy ? tick >> 2 : tick >> 4;
+    const age = RACK_HIT - rackHit, wave = (age / 3) | 0;
+    for (let u = 0; u < NUNIT; u++) {
+      const y = UNIT_Y0 + u * UNIT_H + 1;
+      let h = Math.imul(u + 1, 374761393) ^ Math.imul(tt + 7, 668265263);
+      h = Math.imul(h ^ (h >>> 13), 1274126177); h ^= h >>> 16;
+      let c1 = (h & 3) !== 0 ? M_CYAN : SKY3;
+      let c2 = (h & 12) === 12 ? GOLD : (h & 16) !== 0 ? M_AZURE : SKY3;
+      let c3 = busy && (h & 32) !== 0 ? M_CYAN : SKY3;
+      if (rackHit > 0) {
+        const d = u > hitUnit ? u - hitUnit : hitUnit - u;
+        if (wave >= d && wave < d + 5) {
+          c1 = WHITE; c2 = M_CYAN; c3 = M_CYAN;
+          const vc = wave === d ? M_VIOLET : M_DEEP;
+          for (let x = RACK_X0 + 9; x <= RACK_X1 - 3; x += 2) { put(x, y, vc); put(x, y + 1, vc); }
+        }
+      }
+      put(RACK_X0 + 3, y, c1); put(RACK_X0 + 5, y, c2); put(RACK_X0 + 3, y + 1, c3);
+    }
+  }
+
+  // ======================================================================
+  //  Launch
+  // ======================================================================
+  let shakeT = 0, flashT = 0;
+  const SHX = new Int8Array([0, 1, 0, -1, 1, -1, 1, -2, 2, -2, 2]);
+  const SHY = new Int8Array([0, 0, 1, 0, -1, 1, -1, 1, -1, 2, -2]);
+  const reduceMotion = typeof window.matchMedia === 'function' &&
+                       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function fire() {
+    // Orbiting tokens explode outward
+    for (let i = 0; i < MAXP; i++) {
+      if (pKind[i] !== K_ORBIT) continue;
+      const sp = 1.2 + rnd() * 1.6;
+      pKind[i] = K_FREE; pBack[i] = 0;
+      pX[i] = gemX + Math.cos(pA[i]) * pR[i];                     // re-centre on the push position
+      pY[i] = gemY + Math.sin(pA[i]) * pR[i] * 0.55;
+      pVX[i] = Math.cos(pA[i]) * sp; pVY[i] = Math.sin(pA[i]) * sp * 0.8;
+      pDrag[i] = 0.9; pGrav[i] = 0.01;
+      const life = 18 + ((rnd() * 20) | 0);
+      pLife[i] = life; pMax[i] = life;
+    }
+    // Fresh burst
+    for (let n = 0; n < 24; n++) {
+      const i = emit(16 + ((rnd() * 26) | 0), rnd() < 0.5 ? 0 : 2, n < 8 ? 1 : 0);
+      if (i < 0) break;
+      const a = rnd() * TAU, sp = 0.5 + rnd() * 2.4;
+      pX[i] = gemX; pY[i] = gemY; pVX[i] = Math.cos(a) * sp; pVY[i] = Math.sin(a) * sp;
+      pDrag[i] = 0.92; pGrav[i] = 0.015;
+    }
+    // Crisp shock ring
+    for (let n = 0; n < 16; n++) {
+      const i = emit(12, 2, 0);
+      if (i < 0) break;
+      const a = n * TAU / 16;
+      pX[i] = gemX; pY[i] = gemY; pVX[i] = Math.cos(a) * 2.2; pVY[i] = Math.sin(a) * 2.2; pDrag[i] = 0.9;
+    }
+    // Confetti fountain
+    for (let n = 0; n < 56; n++) {
+      const i = emit(62 + ((rnd() * 28) | 0), 4 + (n & 3), CONF);
+      if (i < 0) break;
+      const a = -1.5708 + (rnd() - 0.4) * 2.8, sp = 1.0 + rnd() * 1.5;
+      pX[i] = gemX + (rnd() - 0.5) * 4; pY[i] = gemY - 1;
+      pVX[i] = Math.cos(a) * sp; pVY[i] = Math.sin(a) * sp; pDrag[i] = 0.95; pGrav[i] = 0.04;
+    }
+    // Dust at the feet
+    for (let n = 0; n < 6; n++) {
+      const i = emit(14 + ((rnd() * 10) | 0), 3, 0);
+      if (i < 0) break;
+      pX[i] = AX - 6 + rnd() * 14; pY[i] = AY; pVX[i] = (rnd() - 0.5) * 1.2; pVY[i] = -0.3 - rnd() * 0.4;
+      pDrag[i] = 0.9; pGrav[i] = 0.05;
+    }
+    // The job itself
+    prjOn = 1; prjAge = 0; PRJ[PR_X] = gemX + 2; PRJ[PR_Y0] = gemY; PRJ[PR_Y] = gemY; PRJ[PR_VX] = 1.6;
+    for (let k = 0; k < TRAIL; k++) { trX[k] = gemX; trY[k] = gemY; }
+    shakeT = reduceMotion ? 0 : 10;
+    flashT = reduceMotion ? 0 : 6;
+  }
+
+  // ======================================================================
+  //  Fixed-step update
+  // ======================================================================
+  function update() {
+    tick++; st++;
+    if (st >= DUR[state]) { state = (state + 1) & 3; st = 0; }
+    if (tick % POSE_STEP === 0) evalPose();
+    if (state === S_CAST && st === FIRE_AT) fire();
+    if (state === S_CHARGE && st === 0) best = 0;   // new run: clear the plot
+
+    const t = st / DUR[state];
+
+    // Logo glow + colour at 20 fps
+    if (tick % 3 === 0) {
+      let gl;
+      if (state === S_IDLE) gl = 0.2 + 0.05 * Math.sin(tick * TAU / 120);
+      else if (state === S_CHARGE) gl = 0.22 + 0.68 * t + (rnd() - 0.5) * 0.3 * t;
+      else if (state === S_CAST) gl = st < FIRE_AT ? 0.95 : 1 - (st - FIRE_AT) / 30 * 0.35;
+      else gl = 0.65 - 0.45 * t;
+      GLOW[0] = gl < 0 ? 0 : gl > 1 ? 1 : gl;
+
+      gemStar = 0;
+      if (state === S_CHARGE) {
+        gemCore = rnd() < 0.4 + 0.5 * t ? WHITE : M_CYAN;
+        gemLit = rnd() < 0.5 ? M_CYAN : WHITE;
+        gemMid = rnd() < 0.5 ? M_CYAN : M_AZURE;
+        gemDark = rnd() < 0.5 ? M_VIOLET : M_AZURE;
+        if (t > 0.7 && rnd() < 0.4) gemStar = 1;
+      } else if (state === S_CAST && st < FIRE_AT + 18) {
+        gemCore = WHITE; gemLit = WHITE; gemMid = M_CYAN; gemDark = M_AZURE;
+        gemStar = st < FIRE_AT ? 1 : st < FIRE_AT + 12 ? 2 : 1;
+      } else {
+        const blink = ((tick >> 4) & 7) === 0;
+        gemCore = blink ? WHITE : M_CYAN; gemLit = M_CYAN; gemMid = M_AZURE; gemDark = M_DEEP;
+      }
+    }
+
+    // Emitters
+    if (state === S_CHARGE) {
+      const tp = (t * 100) | 0;
+      if (rnd() < 0.3 + 0.6 * t) spawnOrbit(tp);
+      if (t > 0.6 && rnd() < 0.5) spawnOrbit(tp);
+    } else if (state === S_CAST && st < FIRE_AT) {
+      spawnOrbit(100); spawnOrbit(100);
+    } else if ((state === S_IDLE && rnd() < 0.025) || (state === S_RECOVER && rnd() < 0.08)) {
+      const i = emit(30 + ((rnd() * 40) | 0), rnd() < 0.5 ? 0 : 2, 0);   // drifting motes
+      if (i >= 0) {
+        pX[i] = gemX + (rnd() - 0.5) * 3; pY[i] = gemY;
+        pVX[i] = (rnd() - 0.5) * 0.25; pVY[i] = -0.12 - rnd() * 0.12; pDrag[i] = 0.99; pGrav[i] = -0.002;
+      }
+    }
+
+    updateParticles();
+    updateProjectile();
+    if (shakeT > 0) shakeT--;
+    if (flashT > 0) flashT--;
+    if (rackHit > 0) rackHit--;
+  }
+
+
+  // ======================================================================
+  //  Frame composition
+  // ======================================================================
+  function drawScene() {
+    fb.set(flashT > 0 ? bgFlash : bg);
+    mk.fill(0);
+    if (flashT === 0) drawStars();
+    drawMonitor();
+    drawRack();
+    drawHalo();
+    floorLight(gemX, gemY, (GLOW[0] * 100) | 0);
+    if (prjOn) floorLight(trX[0], trY[0], 60);
+    if (rackHit > 0) floorLight(RACK_X0 - 3, 64, rackHit * 2);
+    drawPerson();
+    outlinePass();
+    rimPass();
+    drawParticles();
+    if (prjOn) drawProjectile();
+  }
+
+  // ======================================================================
+  //  Display: indexed buffer -> 128x96 offscreen canvas -> integer-scaled blit
+  // ======================================================================
+  const stage = document.getElementById('stage');
+  const screen = document.getElementById('screen');
+  const dctx = screen.getContext('2d', { alpha: false });
+  const off = document.createElement('canvas');
+  off.width = W; off.height = H;
+  const octx = off.getContext('2d');
+  const img = octx.createImageData(W, H);
+  const out32 = new Uint32Array(img.data.buffer);
+  const pal32 = new Uint32Array(PAL.length);
+  {
+    const b = new Uint8Array(pal32.buffer); // byte order matches ImageData on any endianness
+    for (let i = 0; i < PAL.length; i++) {
+      const v = parseInt(PAL[i].slice(1), 16);
+      b[i * 4] = v >> 16; b[i * 4 + 1] = (v >> 8) & 255; b[i * 4 + 2] = v & 255; b[i * 4 + 3] = 255;
+    }
+  }
+
+  let scale = 1, viewX = 0, viewY = 0;
+
+  function compose() {
+    const ox = SHX[shakeT], oy = SHY[shakeT];
+    if (ox === 0 && oy === 0) {
+      for (let i = 0; i < N; i++) out32[i] = pal32[fb[i]];
+    } else {
+      let o = 0;
+      for (let y = 0; y < H; y++) {
+        let sy = y - oy; if (sy < 0) sy = 0; else if (sy >= H) sy = H - 1;
+        const row = sy * W;
+        for (let x = 0; x < W; x++) {
+          let sx = x - ox; if (sx < 0) sx = 0; else if (sx >= W) sx = W - 1;
+          out32[o++] = pal32[fb[row + sx]];
+        }
+      }
+    }
+    octx.putImageData(img, 0, 0);
+  }
+
+  function blit() {
+    dctx.drawImage(off, 0, 0, W, H, viewX, viewY, W * scale, H * scale);
+  }
+
+  function resize() {
+    const dpr = window.devicePixelRatio || 1;
+    const bw = Math.max(1, Math.round(stage.clientWidth * dpr));
+    const bh = Math.max(1, Math.round(stage.clientHeight * dpr));
+    screen.width = bw; screen.height = bh;
+    screen.style.width = (bw / dpr) + 'px';
+    screen.style.height = (bh / dpr) + 'px';
+    scale = Math.max(1, Math.floor(Math.min(bw / W, bh / H)));
+    viewX = (bw - W * scale) >> 1;
+    viewY = (bh - H * scale) >> 1;
+    dctx.imageSmoothingEnabled = false;
+    dctx.fillStyle = PAL[VOID];
+    dctx.fillRect(0, 0, bw, bh);
+    blit();
+  }
+
+  const CLK = new Float64Array(2); // last timestamp, accumulator
+  CLK[0] = -1;
+  function frame(now) {
+    requestAnimationFrame(frame);
+    if (CLK[0] < 0) CLK[0] = now;
+    let dt = now - CLK[0];
+    CLK[0] = now;
+    if (dt > 250) dt = 250;
+    CLK[1] += dt;
+    let steps = 0;
+    // 1 ms tolerance locks cleanly to 60 Hz vsync despite timestamp jitter
+    while (CLK[1] >= STEP_MS - 1) { update(); CLK[1] -= STEP_MS; steps++; }
+    if (steps > 0) { drawScene(); compose(); blit(); }
+  }
+
+  bake();
+  evalPose();
+  drawScene();
+  compose();
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

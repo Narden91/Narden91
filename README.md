@@ -4,7 +4,7 @@
 
 <a href="https://github.com/Narden91">
   <img
-    src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=19&duration=2800&pause=1000&color=58A6FF&center=true&vCenter=true&repeat=true&random=false&width=850&height=42&lines=AI%2FML+for+THz%2C+Raman+%26+Optical+Spectroscopy;Inverse+Problems+%C2%B7+Uncertainty+Quantification;Evolutionary+Computation+%C2%B7+Biomedical+AI;Reproducible+Research+Software+%C2%B7+HPC"
+    src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=19&duration=2800&pause=1000&color=58A6FF&center=true&vCenter=true&repeat=true&random=false&width=850&height=42&lines=AI%2FML+for+THz%2C+Raman+%26+Optical+Spectroscopy;Inverse+Problems+%C2%B7+Uncertainty+Quantification;Evolutionary+Computation+%C2%B7+Biomedical+AI;Reproducible+Research+Software+%C2%B7+CINECA+HPC"
     alt="Research focus"
   />
 </a>
@@ -22,10 +22,10 @@
 
 <br />
 
-![Peer Reviewed](https://img.shields.io/badge/Peer--Reviewed_Publications-15-2EA043?style=flat-square)
-![First Author](https://img.shields.io/badge/First--Author-7-2F81F7?style=flat-square)
-![Best Paper](https://img.shields.io/badge/EvoStar_2026-Best_EvoApps_Paper-FFB000?style=flat-square)
-![Horizon Europe](https://img.shields.io/badge/Horizon_Europe-2_Projects-003399?style=flat-square&logo=europeanunion&logoColor=FFD700)
+[![Publications](https://img.shields.io/badge/Publications_%26_Preprints-19-2EA043?style=flat-square)](https://orcid.org/0009-0005-8718-5435)
+[![First Author](https://img.shields.io/badge/First--Author_Papers-9-2F81F7?style=flat-square)](https://orcid.org/0009-0005-8718-5435)
+[![Best Paper](https://img.shields.io/badge/EvoStar_2026-Best_EvoApps_Paper-FFB000?style=flat-square)](https://orcid.org/0009-0005-8718-5435)
+[![Horizon Europe](https://img.shields.io/badge/Horizon_Europe-2_Projects-003399?style=flat-square&logo=europeanunion&logoColor=FFD700)](https://uefconnect.uef.fi/en/emanuele.nardone/)
 ![Profile Views](https://komarev.com/ghpvc/?username=Narden91&color=58A6FF&style=flat-square&label=Profile+Views)
 
 </div>
@@ -36,13 +36,13 @@
 
 ## About
 
-I am a **Postdoctoral Researcher at the University of Eastern Finland (UEF), Center for Photonics Sciences**. I work at the intersection of **machine learning, spectroscopy, computational photonics, inverse problems, and uncertainty-aware AI**.
+I am a **Postdoctoral Researcher at the University of Eastern Finland (UEF), Center for Photonics Sciences**. I work at the intersection of **machine learning, optical & THz spectroscopy, computational photonics, inverse problems, and uncertainty-aware AI**.
 
-My current research includes **THz and Raman data analysis, transfer-matrix-model optimisation, inverse reconstruction, spectral modelling, uncertainty quantification, and TEM image analysis**. I also develop **reproducible research software** for machine-learning and HPC workflows.
+My research focuses on **THz and Raman data analysis, transfer-matrix-model (TMM) optimisation, inverse reconstruction, spectral modelling, uncertainty quantification (conformal prediction), and TEM image analysis**. In addition to theoretical and experimental modelling, I engineer **reproducible, high-performance research software** for GPU and HPC environments (such as CINECA supercomputers).
 
-During my PhD, I investigated **handwriting-based biomarkers for neurological screening**, combining deep learning, Bayesian classifier fusion, evolutionary computation, multimodal learning, and explainable AI.
+Previously, during my PhD, I investigated **handwriting-based biomarkers for neurological screening (Alzheimer's disease)**, combining deep learning, Bayesian classifier fusion, evolutionary computation, multimodal learning, and explainable AI.
 
-> **Research goal:** build machine-learning systems that are not only accurate, but measurable, reproducible, and useful in scientific practice.
+> **Research mission:** Develop machine-learning systems that are not only accurate, but measurable, reproducible, uncertainty-aware, and trustworthy in scientific practice.
 
 <br />
 
@@ -54,48 +54,48 @@ During my PhD, I investigated **handwriting-based biomarkers for neurological sc
 <tr>
 <td width="50%" valign="top">
 
-### 📡 Scientific AI
+### 📡 Scientific AI & Photonics
 
-- THz & optical spectroscopy
-- Raman and spectral analysis
-- Computational photonics
+- THz & optical spectroscopy modelling
+- Raman & spectral data processing
+- Computational photonics & optics
 - Inverse-problem reconstruction
-- Transfer-matrix-model optimisation
+- Transfer-matrix-model (TMM) optimisation
 
 </td>
 <td width="50%" valign="top">
 
-### 🎯 Reliable machine learning
+### 🎯 Trustworthy & Reliable ML
 
-- Conformal prediction
-- Uncertainty quantification
-- Model reliability & testing
-- Evolutionary optimisation
-- Explainable & multimodal AI
+- Conformal prediction & coverage guarantees
+- Uncertainty quantification (UQ)
+- Surrogate-assisted evolutionary algorithms
+- Bayesian networks & classifier fusion
+- Explainable & multimodal AI (XAI)
 
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
 
-### 🔬 Vision & biomedical AI
+### 🔬 Biomedical AI & Vision
 
-- TEM image analysis
-- Morphology measurements
-- Handwriting biomarkers
-- Neurological screening
-- Automated image processing
+- TEM image analysis & morphology measurements
+- Stroke-based handwriting biomarkers
+- Neurological screening (Alzheimer's detection)
+- Multimodal biosignal classification
+- Automated feature engineering pipelines
 
 </td>
 <td width="50%" valign="top">
 
-### 💻 Research engineering
+### 💻 Research Software Engineering & HPC
 
-- Reproducible ML pipelines
-- Containerised software
-- GPU/HPC experimentation
-- Scientific data workflows
-- Research software development
+- Reproducible ML pipelines (Hydra, MLflow)
+- Containerised software (Docker, Singularity)
+- CINECA HPC & GPU supercomputing workflows
+- Open-source scientific Python libraries
+- Rigorous benchmark testing & validation
 
 </td>
 </tr>
@@ -105,7 +105,7 @@ During my PhD, I investigated **handwriting-based biomarkers for neurological sc
 
 ---
 
-## Current projects
+## Current projects & grants
 
 <table>
 <tr>
@@ -114,7 +114,7 @@ During my PhD, I investigated **handwriting-based biomarkers for neurological sc
 ### 🇪🇺 HERMES
 **Horizon Europe · MSCA Staff Exchanges**
 
-Machine learning for THz and optical data, transfer-matrix-model optimisation, inverse reconstruction, Raman analysis, and spectral data processing.
+Machine learning for THz and optical spectroscopy, transfer-matrix-model optimisation, inverse reconstruction, Raman analysis, and spectral signal processing across an international research consortium.
 
 </td>
 <td width="50%" valign="top">
@@ -122,25 +122,25 @@ Machine learning for THz and optical data, transfer-matrix-model optimisation, i
 ### 🇪🇺 THz-Skin
 **Horizon Europe · EIC Pathfinder Open**
 
-Machine-learning research, THz fingerprint e-library development, data curation, spectral analysis, and software for THz measurement data.
+Pioneering machine-learning research, THz fingerprint e-library development, scientific data curation, spectral analysis, and high-performance software for THz skin measurement data.
 
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
 
-### 🇮🇹 Monozukuri secondment
+### 🇮🇹 Monozukuri Secondment
 **Rome · 2026**
 
-THz-based non-invasive glucose sensing, signal-processing pipelines, feasibility analysis, and work with industrial measurement requirements.
+THz-based non-invasive sensing, advanced signal-processing pipelines, feasibility analysis, and industrial-grade measurement validation.
 
 </td>
 <td width="50%" valign="top">
 
 ### ⚙️ CINECA & CLEPSYDRA
-**HPC · optimisation · reproducibility**
+**HPC · Optimisation · Reproducibility**
 
-Machine-learning and optimisation experiments on CINECA systems, numerical studies, reproducible ingestion pipelines, and containerised research software.
+Large-scale machine-learning and optimization experiments deployed on CINECA supercomputers, numerical studies, reproducible data pipelines, and containerised HPC environments.
 
 </td>
 </tr>
@@ -154,23 +154,25 @@ Machine-learning and optimisation experiments on CINECA systems, numerical studi
 
 <table>
 <tr>
-<td width="25%" align="center"><b>15</b><br />Peer-reviewed<br />publications</td>
-<td width="25%" align="center"><b>7</b><br />First-author<br />papers</td>
-<td width="25%" align="center"><b>1</b><br />Best paper<br />award</td>
-<td width="25%" align="center"><b>2</b><br />Horizon Europe<br />projects</td>
+<td width="25%" align="center"><h3>19</h3><sub>Publications & Preprints</sub></td>
+<td width="25%" align="center"><h3>9</h3><sub>First-Author Papers</sub></td>
+<td width="25%" align="center"><h3>1</h3><sub>Best Paper Award</sub></td>
+<td width="25%" align="center"><h3>2</h3><sub>Horizon Europe Projects</sub></td>
 </tr>
 </table>
 
 ### 🏆 Best EvoApps Paper Award — EvoStar 2026
 
-*Toward Reliable Uncertainty Quantification in Surrogate-Assisted Evolutionary Algorithms via Temporal Conformal Prediction.*
+> *Toward Reliable Uncertainty Quantification in Surrogate-Assisted Evolutionary Algorithms via Temporal Conformal Prediction.*  
+> **Nardone E.**, et al. — *EvoApplications 2026, Lecture Notes in Computer Science (LNCS)*, pp. 384–401.
 
 ### Selected publications
 
-- **Nardone E.**, D'Alessandro T., Cilia N.D., Fontanella F. (2025). *Handwriting strokes as biomarkers for Alzheimer's disease prediction*. **Computers in Biology and Medicine**, 190:110039.
-- **Nardone E.**, D'Alessandro T., De Stefano C., Fontanella F., Scotto di Freca A. (2025). *A Bayesian network combiner for multimodal handwriting analysis in Alzheimer's detection*. **Pattern Recognition Letters**, 190:177–184.
-- **Nardone E.**, D'Alessandro T., De Stefano C., Fontanella F. (2025). *How Data Augmentation Affects Evolutionary Algorithms in Feature Selection*. **SN Computer Science**, 6(5):536.
-- **Nardone E. et al.** (2026). *Toward Reliable Uncertainty Quantification in Surrogate-Assisted Evolutionary Algorithms via Temporal Conformal Prediction*. **EvoApplications 2026, LNCS**, 384–401. **Best EvoApps Paper Award.**
+- **Nardone E.**, D'Alessandro T., Cilia N.D., Fontanella F. (2026). *Artificial Intelligence for Alzheimer's disease screening via handwriting images acquired by smartphones*. **Engineering Applications of Artificial Intelligence**, 116023. [[DOI: 10.1016/j.engappai.2026.116023](https://doi.org/10.1016/j.engappai.2026.116023)]
+- **Nardone E.**, D'Alessandro T., Cilia N.D., Fontanella F. (2025). *Handwriting strokes as biomarkers for Alzheimer's disease prediction: A novel machine learning approach*. **Computers in Biology and Medicine**, 190:110039. [[DOI: 10.1016/j.compbiomed.2025.110039](https://doi.org/10.1016/j.compbiomed.2025.110039)]
+- **Nardone E.**, D'Alessandro T., De Stefano C., Fontanella F., Scotto di Freca A. (2025). *A Bayesian network combiner for multimodal handwriting analysis in Alzheimer's disease detection*. **Pattern Recognition Letters**, 190:177–184. [[DOI: 10.1016/j.patrec.2025.02.019](https://doi.org/10.1016/j.patrec.2025.02.019)]
+- **Nardone E.**, D'Alessandro T., De Stefano C., Fontanella F. (2025). *How Data Augmentation Affects Evolutionary Algorithms in Feature Selection: An Experimental Study*. **SN Computer Science**, 6(5):536. [[DOI: 10.1007/s42979-025-04049-3](https://doi.org/10.1007/s42979-025-04049-3)]
+- **Nardone E.**, et al. (2026). *Compact and Interpretable Binary Classification with SLIM Geometric Semantic Genetic Programming*. [[SSRN Preprint](https://doi.org/10.2139/ssrn.7231540)]
 
 <p align="center">
   <a href="https://orcid.org/0009-0005-8718-5435"><img src="https://img.shields.io/badge/Full_publication_record-ORCID-A6CE39?style=for-the-badge&logo=orcid&logoColor=white" alt="ORCID publication record" /></a>
@@ -181,35 +183,46 @@ Machine-learning and optimisation experiments on CINECA systems, numerical studi
 
 ---
 
-## Selected repositories
+## Featured repositories & open-source software
 
 <table>
 <tr>
-<td width="33%" valign="top">
+<td width="50%" valign="top">
 
-### ✍️ [Handwriting Fractal Analyzer](https://github.com/Narden91/Handwriting_fractal_analysis)
+### 🧬 [SLIM-GSGP (`slim_v2`)](https://github.com/Narden91/slim_v2)
 
-Fractal, lacunarity, multifractal, directional, topological, and morphological measurements from handwriting images.
+The first Python library implementing **SLIM Geometric Semantic Genetic Programming (SLIM-GSGP)** — generating compact, highly interpretable symbolic models with state-of-the-art performance.
 
-`Python` · `OpenCV` · `NumPy` · `scikit-learn` · `Hydra`
+`Python` · `Genetic Programming` · `Evolutionary Computation` · `Interpretable AI`
 
 </td>
-<td width="33%" valign="top">
+<td width="50%" valign="top">
 
 ### 🔗 [Bayesian Combining](https://github.com/Narden91/bayesian-combining)
 
-Bayesian-network model stacking, feature-importance analysis, and hyperparameter optimisation.
+Bayesian-network classifier fusion, multimodal model stacking, feature importance evaluation, and Bayesian hyperparameter optimisation (*Pattern Recognition Letters 2025*).
 
-`Python` · `Bayesian Networks` · `Optuna` · `Explainability`
+`Python` · `Bayesian Networks` · `Optuna` · `Multimodal Fusion`
 
 </td>
-<td width="33%" valign="top">
+</tr>
+<tr>
+<td width="50%" valign="top">
 
 ### 🧠 [Deep Handwriting AI](https://github.com/Narden91/DL_approach_handwriting)
 
-Deep-learning models for handwriting classification, including recurrent, Transformer, and attention-based architectures.
+Deep-learning architectures for dynamic sensor & stroke classification, featuring Recurrent models, 1D/2D CNNs, and Transformer-based attention mechanisms for biomarker detection.
 
 `PyTorch` · `Lightning` · `Hydra` · `Docker`
+
+</td>
+<td width="50%" valign="top">
+
+### ✍️ [Handwriting Fractal Analyzer](https://github.com/Narden91/Handwriting_fractal_analysis)
+
+High-throughput morphological and multiscale analysis toolkit: computes fractal dimension, lacunarity, multifractal spectra, and topological descriptors from handwriting images.
+
+`Python` · `OpenCV` · `NumPy` · `scikit-learn` · `Hydra`
 
 </td>
 </tr>
@@ -226,22 +239,36 @@ Deep-learning models for handwriting classification, including recurrent, Transf
 ## Technical toolbox
 
 <details open>
-<summary><b>Machine learning & scientific computing</b></summary>
+<summary><b>Machine learning, deep learning & uncertainty</b></summary>
 <br />
 
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
+![PyTorch Lightning](https://img.shields.io/badge/Lightning-792EE5?style=flat-square&logo=lightning&logoColor=white)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikitlearn&logoColor=white)
-![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white)
-![SciPy](https://img.shields.io/badge/SciPy-8CAAE6?style=flat-square&logo=scipy&logoColor=white)
-![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat-square&logo=pandas&logoColor=white)
+![Optuna](https://img.shields.io/badge/Optuna-1565C0?style=flat-square&logo=optuna&logoColor=white)
 ![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white)
+![Hugging Face](https://img.shields.io/badge/Hugging_Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black)
 
-**Methods:** evolutionary computation · genetic programming · Bayesian networks · conformal prediction · uncertainty quantification · explainable AI · multimodal learning
+**Core Methodologies:** Conformal Prediction · Temporal Uncertainty Quantification · Evolutionary Algorithms · Genetic Programming (SLIM-GSGP) · Bayesian Networks & Classifier Ensembles · Explainable AI (XAI) · Multimodal Learning
 
 </details>
 
 <details>
-<summary><b>Programming & research computing</b></summary>
+<summary><b>Scientific computing & data analysis</b></summary>
+<br />
+
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white)
+![SciPy](https://img.shields.io/badge/SciPy-8CAAE6?style=flat-square&logo=scipy&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat-square&logo=pandas&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-11557c?style=flat-square&logo=python&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat-square&logo=jupyter&logoColor=white)
+
+**Domains:** THz & Raman Spectral Analysis · Transfer-Matrix Method (TMM) · Inverse Problem Solving · TEM Micrograph Analysis · Lacunarity & Fractal Analysis
+
+</details>
+
+<details>
+<summary><b>Languages, systems & HPC engineering</b></summary>
 <br />
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
@@ -249,13 +276,13 @@ Deep-learning models for handwriting classification, including recurrent, Transf
 ![C#](https://img.shields.io/badge/C%23-512BD4?style=flat-square&logo=dotnet&logoColor=white)
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-336791?style=flat-square&logo=postgresql&logoColor=white)
-![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat-square&logo=jupyter&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
 ![Azure](https://img.shields.io/badge/Azure-0078D4?style=flat-square&logo=microsoftazure&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
 
-**Systems:** CINECA HPC · GPU computing · containers · Linux · reproducible machine-learning workflows
+**HPC & Platforms:** CINECA Supercomputing Clusters (Leonardo/Galileo) · Slurm Workload Manager · GPU-accelerated computing · Containerized scientific environments
 
 </details>
 
@@ -281,23 +308,23 @@ timeline
               : MSc Software Engineering
     2026-now : Postdoctoral Researcher
              : University of Eastern Finland
-             : HERMES and THz-Skin
+             : HERMES & THz-Skin Projects
 ```
 
 <details>
 <summary><b>Awards, academic service & teaching</b></summary>
 <br />
 
-| Role | Activity |
+| Category | Details |
 |---|---|
-| 🏆 **Award** | Best EvoApps Paper Award — EvoStar 2026 |
-| 🎤 **Workshop Chair** | BIOMAP @ ICPR 2026 |
+| 🏆 **Award** | **Best EvoApps Paper Award** — EvoStar 2026 |
+| 🎤 **Workshop Chair** | **BIOMAP** @ ICPR 2026 |
 | 🌐 **Conference organisation** | International Conference on Nano-, Tera-, and Bio-Photonics 2026, Joensuu |
-| 📝 **Journal reviewing** | Springer Nature AI journal · Intelligence-Based Medicine · Engineering Applications of Artificial Intelligence · Applied Soft Computing · Scientific Reports |
+| 📝 **Journal reviewing** | Springer Nature AI Journal · Intelligence-Based Medicine · Engineering Applications of Artificial Intelligence (EAAI) · Applied Soft Computing · Scientific Reports |
 | 🔍 **Conference reviewing** | GECCO 2026 · PPSN 2026 · BIOMAP/AHIA @ ICPR 2026 · MCMI @ ICPR 2024 |
-| 👨‍🏫 **Teaching** | Adjunct Assistant Professor in Artificial Intelligence |
-| 🎓 **Training** | IEEE Trainer for Europe · Generative AI Tutor |
-| 🧑‍🔬 **Mentoring** | UEF Summer Internship Supervisor — 2026 |
+| 👨‍🏫 **University Teaching** | Adjunct Assistant Professor in Artificial Intelligence (MSc Software Engineering) |
+| 🎓 **Training & Outreach** | IEEE Trainer for Europe · Generative AI Tutor |
+| 🧑‍🔬 **Supervision & Mentoring** | UEF Summer Internship Supervisor (2026) |
 
 </details>
 
@@ -309,7 +336,9 @@ timeline
 
 <!-- Deliberately keep ONE GitHub activity/streak-style card only. -->
 <p align="center">
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Narden91&theme=github_dark" width="96%" alt="Narden91 GitHub contribution activity" />
+  <a href="https://github.com/Narden91">
+    <img src="https://streak-stats.demolab.com/?user=Narden91&theme=github-dark-blue&hide_border=true&border_radius=10" width="96%" alt="Narden91 GitHub contribution streak and activity" />
+  </a>
 </p>
 
 <br />
@@ -320,10 +349,10 @@ timeline
 
 <p align="center">
 
-![Azure AI](https://img.shields.io/badge/Microsoft_Azure-AI_Fundamentals-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)
-![Hugging Face](https://img.shields.io/badge/Hugging_Face-AI_Agents_Fundamentals-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black)
-![AI Literacy](https://img.shields.io/badge/EU_AI_Act-AI_Literacy-0052CC?style=for-the-badge&logo=europeanunion&logoColor=white)
-![Software Engineer](https://img.shields.io/badge/Professional_Qualification-Software_Engineer-2E8B57?style=for-the-badge)
+[![Azure AI](https://img.shields.io/badge/Microsoft_Azure-AI_Fundamentals-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)](https://learn.microsoft.com/)
+[![Hugging Face](https://img.shields.io/badge/Hugging_Face-AI_Agents_Fundamentals-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/)
+[![EU AI Act](https://img.shields.io/badge/EU_AI_Act-AI_Literacy-0052CC?style=for-the-badge&logo=europeanunion&logoColor=white)](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai)
+[![Software Engineer](https://img.shields.io/badge/Professional_Qualification-Software_Engineer-2E8B57?style=for-the-badge)](https://uefconnect.uef.fi/en/emanuele.nardone/)
 
 </p>
 
@@ -335,12 +364,13 @@ timeline
 
 ## Let's collaborate
 
-I am interested in joint research on **AI for spectroscopy, computational photonics, uncertainty-aware machine learning, inverse problems, evolutionary computation, biomedical AI, explainable AI, and scientific software**.
+I am actively interested in joint research, academic partnerships, and research engineering collaborations in:
+**AI for spectroscopy, computational photonics, uncertainty-aware machine learning, inverse problems, evolutionary computation, biomedical AI, and reproducible scientific software**.
 
 [![Email](https://img.shields.io/badge/Start_a_conversation-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:emanuele.nardone91@gmail.com)
-[![LinkedIn](https://img.shields.io/badge/Connect_on_LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/emanuelenardone-91)
+[![LinkedIn](https://img.shields.io/badge/Connect_on_LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/emanuelenardone)
 [![GitHub](https://img.shields.io/badge/Follow_on_GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Narden91)
 
-<sub>AI research · scientific software · reproducible machine learning</sub>
+<sub>AI research · computational photonics · reproducible machine learning</sub>
 
 </div>
