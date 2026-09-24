@@ -184,7 +184,7 @@ Large-scale machine-learning and optimization experiments deployed on CINECA sup
 *San Servolo Island, Venice, Italy · September 7–9, 2026*
 
 > *“Evaluating Single-Characters for Page Attribution in Digital Palaeography”*  
-> **Scotto di Freca A., Nardone E., Fontanella F., De Stefano C., Sietis N.**  
+> D'Alessandro T., Scotto di Freca A., **Nardone E.**, Fontanella F., De Stefano C., Sietis N.  
 > Awarded by the IEEE CH 2026 Awards Committee & IEEE SMC Society for pioneering research bridging artificial intelligence, image analysis, and the humanities to push the boundaries of digital palaeography.
 
 </td>
