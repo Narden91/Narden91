@@ -14,6 +14,8 @@
 <br />
 
 [![UEF](https://img.shields.io/badge/UEF-Research_Profile-005F86?style=for-the-badge)](https://uefconnect.uef.fi/en/emanuele.nardone/)
+[![Google Scholar](https://img.shields.io/badge/Google_Scholar-66_Citations-4285F4?style=for-the-badge&logo=googlescholar&logoColor=white)](https://scholar.google.com/citations?user=2qupBvTUD3sC)
+[![Scopus](https://img.shields.io/badge/Scopus-58599513400-FF6C37?style=for-the-badge&logo=elsevier&logoColor=white)](https://www.scopus.com/authid/detail.uri?authorId=58599513400)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0005--8718--5435-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0009-0005-8718-5435)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/emanuelenardone)
 [![ResearchGate](https://img.shields.io/badge/ResearchGate-Profile-00CCBB?style=for-the-badge&logo=researchgate&logoColor=white)](https://www.researchgate.net/profile/Emanuele-Nardone)
@@ -22,11 +24,20 @@
 
 <br />
 
-[![Publications](https://img.shields.io/badge/Publications_%26_Preprints-19-2EA043?style=flat-square)](https://orcid.org/0009-0005-8718-5435)
+[![Scholar Works](https://img.shields.io/badge/Scholar_Publications-26-2EA043?style=flat-square)](https://scholar.google.com/citations?user=2qupBvTUD3sC)
+[![Scopus Documents](https://img.shields.io/badge/Scopus_Documents-18-FF6C37?style=flat-square)](https://www.scopus.com/authid/detail.uri?authorId=58599513400)
 [![First Author](https://img.shields.io/badge/First--Author_Papers-9-2F81F7?style=flat-square)](https://orcid.org/0009-0005-8718-5435)
-[![Best Paper](https://img.shields.io/badge/EvoStar_2026-Best_EvoApps_Paper-FFB000?style=flat-square)](https://orcid.org/0009-0005-8718-5435)
+[![Best Paper Awards](https://img.shields.io/badge/Best_Paper_Awards-2_🏆-FFB000?style=flat-square)](https://orcid.org/0009-0005-8718-5435)
 [![Horizon Europe](https://img.shields.io/badge/Horizon_Europe-2_Projects-003399?style=flat-square&logo=europeanunion&logoColor=FFD700)](https://uefconnect.uef.fi/en/emanuele.nardone/)
 ![Profile Views](https://komarev.com/ghpvc/?username=Narden91&color=58A6FF&style=flat-square&label=Profile+Views)
+
+<br />
+
+<p align="center">
+  <img src="./pixel-researcher.gif" width="68%" alt="Pixel Researcher — Emanuele Nardone" />
+  <br />
+  <!-- <sub>⚡ <i>Simulating late-night model training, loss convergence, and GPU compute</i></sub> -->
+</p>
 
 </div>
 
@@ -150,33 +161,62 @@ Large-scale machine-learning and optimization experiments deployed on CINECA sup
 
 ---
 
-## Selected research output
+## Selected research output & citation metrics
 
 <table>
 <tr>
-<td width="25%" align="center"><h3>19</h3><sub>Publications & Preprints</sub></td>
-<td width="25%" align="center"><h3>9</h3><sub>First-Author Papers</sub></td>
-<td width="25%" align="center"><h3>1</h3><sub>Best Paper Award</sub></td>
-<td width="25%" align="center"><h3>2</h3><sub>Horizon Europe Projects</sub></td>
+<td width="20%" align="center"><h3>26</h3><sub>Google Scholar Works<br /><b>66</b> citations · h-index <b>6</b></sub></td>
+<td width="20%" align="center"><h3>18</h3><sub>Scopus Indexed<br /><b>48</b> citations · h-index <b>5</b></sub></td>
+<td width="20%" align="center"><h3>9</h3><sub>First-Author<br />Papers</sub></td>
+<td width="20%" align="center"><h3>2 🏆</h3><sub>Best Paper<br />Awards</sub></td>
+<td width="20%" align="center"><h3>2 🇪🇺</h3><sub>Horizon Europe<br />Grants</sub></td>
 </tr>
 </table>
 
-### 🏆 Best EvoApps Paper Award — EvoStar 2026
+### 🏆 Best Paper Awards
 
-> *Toward Reliable Uncertainty Quantification in Surrogate-Assisted Evolutionary Algorithms via Temporal Conformal Prediction.*  
-> **Nardone E.**, et al. — *EvoApplications 2026, Lecture Notes in Computer Science (LNCS)*, pp. 384–401.
+<table>
+<tr>
+<td width="50%" valign="top">
+
+#### 🏆 Best Innovation Paper Award — IEEE CH 2026
+**2nd IEEE International Conference on Cyber Humanities**  
+*San Servolo Island, Venice, Italy · September 7–9, 2026*
+
+> *“Evaluating Single-Characters for Page Attribution in Digital Palaeography”*  
+> **Scotto di Freca A., Nardone E., Fontanella F., De Stefano C., Sietis N.**  
+> Awarded by the IEEE CH 2026 Awards Committee & IEEE SMC Society for pioneering research bridging artificial intelligence, image analysis, and the humanities to push the boundaries of digital palaeography.
+
+</td>
+<td width="50%" valign="top">
+
+#### 🏆 Best EvoApps Paper Award — EvoStar 2026
+**European Conference on the Applications of Evolutionary Computation**  
+*EvoStar 2026 · LNCS, pp. 384–401*
+
+> *“Toward Reliable Uncertainty Quantification in Surrogate-Assisted Evolutionary Algorithms via Temporal Conformal Prediction”*  
+> **Nardone E.**, et al.  
+> Awarded for advancing temporal conformal prediction and distribution-free uncertainty quantification in surrogate-assisted evolutionary optimization.
+
+</td>
+</tr>
+</table>
 
 ### Selected publications
 
-- **Nardone E.**, D'Alessandro T., Cilia N.D., Fontanella F. (2026). *Artificial Intelligence for Alzheimer's disease screening via handwriting images acquired by smartphones*. **Engineering Applications of Artificial Intelligence**, 116023. [[DOI: 10.1016/j.engappai.2026.116023](https://doi.org/10.1016/j.engappai.2026.116023)]
+- D'Alessandro T., Scotto di Freca A., **Nardone E.**, Fontanella F., De Stefano C., Sietis N. (2026). *Evaluating Single-Characters for Page Attribution in Digital Palaeography*. **2nd IEEE International Conference on Cyber Humanities (IEEE CH 2026)**, Venice, Italy. **🏆 Best Innovation Paper Award.**
+- **Nardone E.**, D'Alessandro T., Cilia N.D., Fontanella F. (2026). *Artificial Intelligence for Alzheimer's disease screening via handwriting images acquired by smartphones*. **Engineering Applications of Artificial Intelligence (Elsevier)**, 182:116023. [[DOI: 10.1016/j.engappai.2026.116023](https://doi.org/10.1016/j.engappai.2026.116023)]
+- **Nardone E.**, et al. (2026). *Toward Reliable Uncertainty Quantification in Surrogate-Assisted Evolutionary Algorithms via Temporal Conformal Prediction*. **EvoApplications 2026, Lecture Notes in Computer Science (LNCS)**, 14634:384–401. **🏆 Best EvoApps Paper Award.** [[DOI: 10.1007/978-3-032-23604-3_24](https://doi.org/10.1007/978-3-032-23604-3_24)]
 - **Nardone E.**, D'Alessandro T., Cilia N.D., Fontanella F. (2025). *Handwriting strokes as biomarkers for Alzheimer's disease prediction: A novel machine learning approach*. **Computers in Biology and Medicine**, 190:110039. [[DOI: 10.1016/j.compbiomed.2025.110039](https://doi.org/10.1016/j.compbiomed.2025.110039)]
 - **Nardone E.**, D'Alessandro T., De Stefano C., Fontanella F., Scotto di Freca A. (2025). *A Bayesian network combiner for multimodal handwriting analysis in Alzheimer's disease detection*. **Pattern Recognition Letters**, 190:177–184. [[DOI: 10.1016/j.patrec.2025.02.019](https://doi.org/10.1016/j.patrec.2025.02.019)]
 - **Nardone E.**, D'Alessandro T., De Stefano C., Fontanella F. (2025). *How Data Augmentation Affects Evolutionary Algorithms in Feature Selection: An Experimental Study*. **SN Computer Science**, 6(5):536. [[DOI: 10.1007/s42979-025-04049-3](https://doi.org/10.1007/s42979-025-04049-3)]
 - **Nardone E.**, et al. (2026). *Compact and Interpretable Binary Classification with SLIM Geometric Semantic Genetic Programming*. [[SSRN Preprint](https://doi.org/10.2139/ssrn.7231540)]
 
 <p align="center">
-  <a href="https://orcid.org/0009-0005-8718-5435"><img src="https://img.shields.io/badge/Full_publication_record-ORCID-A6CE39?style=for-the-badge&logo=orcid&logoColor=white" alt="ORCID publication record" /></a>
-  <a href="https://www.researchgate.net/profile/Emanuele-Nardone"><img src="https://img.shields.io/badge/Research_outputs-ResearchGate-00CCBB?style=for-the-badge&logo=researchgate&logoColor=white" alt="ResearchGate research outputs" /></a>
+  <a href="https://scholar.google.com/citations?user=2qupBvTUD3sC"><img src="https://img.shields.io/badge/Google_Scholar-Citations-4285F4?style=for-the-badge&logo=googlescholar&logoColor=white" alt="Google Scholar profile" /></a>
+  <a href="https://www.scopus.com/authid/detail.uri?authorId=58599513400"><img src="https://img.shields.io/badge/Scopus-Author_Profile-FF6C37?style=for-the-badge&logo=elsevier&logoColor=white" alt="Scopus author profile" /></a>
+  <a href="https://orcid.org/0009-0005-8718-5435"><img src="https://img.shields.io/badge/ORCID-Publication_Record-A6CE39?style=for-the-badge&logo=orcid&logoColor=white" alt="ORCID publication record" /></a>
+  <a href="https://www.researchgate.net/profile/Emanuele-Nardone"><img src="https://img.shields.io/badge/ResearchGate-Outputs-00CCBB?style=for-the-badge&logo=researchgate&logoColor=white" alt="ResearchGate research outputs" /></a>
 </p>
 
 <br />
@@ -317,7 +357,7 @@ timeline
 
 | Category | Details |
 |---|---|
-| 🏆 **Award** | **Best EvoApps Paper Award** — EvoStar 2026 |
+| 🏆 **Awards** | **Best Innovation Paper Award** — IEEE CH 2026 (San Servolo, Venice) <br /> **Best EvoApps Paper Award** — EvoStar 2026 |
 | 🎤 **Workshop Chair** | **BIOMAP** @ ICPR 2026 |
 | 🌐 **Conference organisation** | International Conference on Nano-, Tera-, and Bio-Photonics 2026, Joensuu |
 | 📝 **Journal reviewing** | Springer Nature AI Journal · Intelligence-Based Medicine · Engineering Applications of Artificial Intelligence (EAAI) · Applied Soft Computing · Scientific Reports |
